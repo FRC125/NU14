@@ -25,4 +25,6 @@ public class RobotMap {
     public static final int DRIVE_RIGHT_MOTOR_2 = 0;
     public static final int DRIVE_RIGHT_MOTOR_3 = 0;
     public static final int PAD_DRIVER = 0;
+    public static final int ROLLER_MOTOR = 0;
+    public static final int ROLLER_DEPLOY = 0;
 }
