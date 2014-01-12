@@ -1,8 +1,13 @@
 
 package edu.wpi.first.wpilibj.templates;
 
+import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.DriverStationEnhancedIO;
+import edu.wpi.first.wpilibj.DriverStationEnhancedIO.EnhancedIOException;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.DigitalIOButton;
+import edu.wpi.first.wpilibj.lib.Utils;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -40,5 +45,69 @@ public class OI {
     // Start the command when the button is released  and let it run the command
     // until it is finished as determined by it's isFinished method.
     // button.whenReleased(new ExampleCommand());
+    
+    //Joysticks
+    private final Joystick driverPad = new Joystick(RobotMap.PAD_DRIVER);
+    
+    // TODO: Adjust values
+    private final int DRIVE_LEFT_AXIS = 0;
+    private final int DRIVE_RIGHT_AXIS = 0;
+    
+    private DriverStationEnhancedIO io = DriverStation.getInstance().getEnhancedIO();
+    
+     private double capAndBand(double value) {
+        value = Utils.deadband(value, .075, -1);
+        value = Utils.deadband(value, .075, 0);
+        value = Utils.deadband(value, .075, 1);
+        return Utils.limit(value, -1, 1);
+    }
+    
+    private double scaleAnalog(double voltageIn) {
+        double normalized = (2 * voltageIn / 3.25) - 1;
+        return normalized;
+    }
+    
+    private double getIOAnalog(int port) {
+        double in;
+        try {
+            in = io.getAnalogIn(port);
+        }
+        catch(EnhancedIOException ex) {
+            return 0;
+        }
+        double refined = capAndBand(scaleAnalog(in));
+        return refined;
+    }
+    
+    private boolean getIODigital(int port) {
+        boolean in = false;
+        try {
+            in = !io.getDigital(port); //active low
+        }
+        catch(EnhancedIOException ex) {
+        }
+        return in;
+    }
+    
+    public double getDriveRight() {
+        return driverPad.getRawAxis(DRIVE_RIGHT_AXIS);
+    }
+    
+    public double getDriveLeft() {
+        return driverPad.getRawAxis(DRIVE_LEFT_AXIS);
+    }
+    
+    public double getDriveThrottle() {
+        return getIOAnalog(1);
+    }
+    
+    public double getDriveWheel() {
+        return getIOAnalog(3);
+    }
+    
+    public boolean getDriveQuickTurn() throws EnhancedIOException {
+        return getIODigital(3);
+    }
+    
 }
 
