@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package edu.wpi.first.wpilibj.lib;
+package com.nutrons.lib;
 
 /**
  *

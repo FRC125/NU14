@@ -1,9 +1,9 @@
-package edu.wpi.first.wpilibj.templates.commands;
+package com.nutrons.aerialassist.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj.templates.OI;
-import edu.wpi.first.wpilibj.templates.subsystems.DriveTrain;
+import com.nutrons.aerialassist.OI;
+import com.nutrons.aerialassist.subsystems.DriveTrain;
 
 /**
  * The base for all commands. All atomic commands should subclass CommandBase.

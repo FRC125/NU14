@@ -3,7 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.wpi.first.wpilibj.templates.commands.Intake;
+package com.nutrons.aerialassist.commands.intake;
+
+import com.nutrons.aerialassist.commands.CommandBase;
 
 /**
  *
