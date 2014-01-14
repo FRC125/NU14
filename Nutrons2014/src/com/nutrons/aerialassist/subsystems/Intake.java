@@ -18,6 +18,7 @@ import com.nutrons.aerialassist.RobotMap;
  */
 public class Intake extends Subsystem {
     
+    public final static int MOTOR_DIRECTION = 1;
     Talon rollers = new Talon(RobotMap.ROLLER_MOTOR);
     Solenoid deploy = new Solenoid(RobotMap.ROLLER_DEPLOY);
     
