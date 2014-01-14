@@ -27,4 +27,8 @@ public class RobotMap {
     public static final int PAD_DRIVER = 0;
     public static final int ROLLER_MOTOR = 0;
     public static final int ROLLER_DEPLOY = 0;
+    public static final int SHOOTER_MOTOR_1 = 0;
+    public static final int SHOOTER_MOTOR_2 = 0;
+    public static final int DISENGAGE_PISTON = 0;
+    public static final int PAWL_PISTON = 0;
 }
