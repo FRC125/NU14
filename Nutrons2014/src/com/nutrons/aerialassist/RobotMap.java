@@ -31,4 +31,7 @@ public class RobotMap {
     public static final int SHOOTER_MOTOR_2 = 0;
     public static final int DISENGAGE_PISTON = 0;
     public static final int PAWL_PISTON = 0;
+    public static final int LOW_WIND_UP_LIMIT = 0;
+    public static final int HIGH_WIND_UP_LIMIT = 0;
+    
 }
