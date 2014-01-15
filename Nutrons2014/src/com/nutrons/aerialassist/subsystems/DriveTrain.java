@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.PIDController;
 public class DriveTrain extends Subsystem {
    
     private double tSens = 1;
+    
     public final double LEFT_SCALE = 1.0;
     public final double RIGHT_SCALE = 1.0;
 
