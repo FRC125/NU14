@@ -4,6 +4,7 @@ package com.nutrons.aerialassist.subsystems;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import com.nutrons.aerialassist.RobotMap;
+import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Gyro;
 import edu.wpi.first.wpilibj.PIDController;
 
@@ -21,6 +22,13 @@ public class DriveTrain extends Subsystem {
     Talon lMotor = new Talon(RobotMap.DRIVE_LEFT);
     Talon rMotor = new Talon(RobotMap.DRIVE_RIGHT);
     Gyro gyro = new Gyro(RobotMap.DRIVETRAIN_GYRO);
+    private final Encoder leftEncoder = new Encoder(RobotMap.DRIVE_LEFT_ENC_A, RobotMap.DRIVE_LEFT_ENC_B);
+    private final Encoder rightEncoder = new Encoder(RobotMap.DRIVE_RIGHT_ENC_A, RobotMap.DRIVE_RIGHT_ENC_B);
+    
+    public DriveTrain() {
+        leftEncoder.start();
+        rightEncoder.start();
+    }
     
     public void initDefaultCommand() {
     }

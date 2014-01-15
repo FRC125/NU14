@@ -22,4 +22,8 @@ public class RobotMap {
     public static final int DRIVE_RIGHT = 0;
     public static final int PAD_DRIVER = 0;
     public static final int DRIVETRAIN_GYRO = 0;
+    public static final int DRIVE_LEFT_ENC_A = 0;
+    public static final int DRIVE_LEFT_ENC_B = 0;
+    public static final int DRIVE_RIGHT_ENC_A = 0;
+    public static final int DRIVE_RIGHT_ENC_B = 0;
 }
