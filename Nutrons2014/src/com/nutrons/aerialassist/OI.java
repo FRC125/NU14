@@ -1,5 +1,5 @@
 
-package edu.wpi.first.wpilibj.templates;
+package com.nutrons.aerialassist;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStationEnhancedIO;
@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.DriverStationEnhancedIO.EnhancedIOException;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.DigitalIOButton;
-import edu.wpi.first.wpilibj.lib.Utils;
+import com.nutrons.lib.Utils;
 
 /**
  * This class is the glue that binds the controls on the physical operator

@@ -1,4 +1,4 @@
-package edu.wpi.first.wpilibj.templates;
+package com.nutrons.aerialassist;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into

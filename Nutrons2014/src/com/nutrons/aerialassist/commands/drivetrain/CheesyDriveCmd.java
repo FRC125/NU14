@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package edu.wpi.first.wpilibj.templates.commands.drivetrain;
+package com.nutrons.aerialassist.commands.drivetrain;
 
 import edu.wpi.first.wpilibj.DriverStationEnhancedIO.EnhancedIOException;
-import edu.wpi.first.wpilibj.templates.commands.CommandBase;
+import com.nutrons.aerialassist.commands.CommandBase;
 
 /**
  *
