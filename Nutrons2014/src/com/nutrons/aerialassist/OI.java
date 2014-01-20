@@ -50,8 +50,8 @@ public class OI {
     private final Joystick driverPad = new Joystick(RobotMap.PAD_DRIVER);
     
     // TODO: Adjust values
-    private final int DRIVE_LEFT_AXIS = 0;
-    private final int DRIVE_RIGHT_AXIS = 0;
+    private final int DRIVE_LEFT_AXIS = 4;
+    private final int DRIVE_RIGHT_AXIS = 3;
     
     private DriverStationEnhancedIO io = DriverStation.getInstance().getEnhancedIO();
     

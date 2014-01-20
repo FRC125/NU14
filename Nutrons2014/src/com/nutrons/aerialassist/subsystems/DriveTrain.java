@@ -4,9 +4,9 @@ package com.nutrons.aerialassist.subsystems;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import com.nutrons.aerialassist.RobotMap;
+import com.nutrons.aerialassist.commands.drivetrain.DTManualTankCmd;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Gyro;
-import edu.wpi.first.wpilibj.PIDController;
 
 /**
  * @author Camilo
@@ -31,6 +31,7 @@ public class DriveTrain extends Subsystem {
     }
     
     public void initDefaultCommand() {
+        setDefaultCommand(new DTManualTankCmd());
     }
     
     public void driveLR(double lPower, double rPower) {
