@@ -1,6 +1,9 @@
 
 package com.nutrons.aerialassist;
 
+import com.nutrons.aerialassist.commands.shooter.LongShotCmd;
+import com.nutrons.aerialassist.commands.shooter.ShootCmd;
+import com.nutrons.aerialassist.commands.shooter.ShortShotCmd;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStationEnhancedIO;
 import edu.wpi.first.wpilibj.DriverStationEnhancedIO.EnhancedIOException;
@@ -8,6 +11,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.DigitalIOButton;
 import com.nutrons.lib.Utils;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -48,12 +52,20 @@ public class OI {
     
     //Joysticks
     private final Joystick driverPad = new Joystick(RobotMap.PAD_DRIVER);
-    
+    private final Joystick operatorPad = new Joystick(RobotMap.PAD_OPERATOR);
     // TODO: Adjust values
     private final int DRIVE_LEFT_AXIS = 0;
     private final int DRIVE_RIGHT_AXIS = 0;
     
     private DriverStationEnhancedIO io = DriverStation.getInstance().getEnhancedIO();
+    
+    public Button longShooterButton = new JoystickButton(operatorPad,3);
+    public Button shortShooterButton = new JoystickButton(operatorPad,4);
+     
+    public OI() {
+        longShooterButton.whenPressed(new LongShotCmd());
+        shortShooterButton.whenPressed(new ShortShotCmd());
+    }
     
      private double capAndBand(double value) {
         value = Utils.deadband(value, .075, -1);
@@ -61,7 +73,7 @@ public class OI {
         value = Utils.deadband(value, .075, 1);
         return Utils.limit(value, -1, 1);
     }
-    
+     
     private double scaleAnalog(double voltageIn) {
         double normalized = (2 * voltageIn / 3.25) - 1;
         return normalized;
@@ -108,6 +120,5 @@ public class OI {
     public boolean getDriveQuickTurn() throws EnhancedIOException {
         return getIODigital(3);
     }
-    
 }
 

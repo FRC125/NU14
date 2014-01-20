@@ -25,13 +25,10 @@ public class RobotMap {
     public static final int DRIVE_RIGHT_MOTOR_2 = 0;
     public static final int DRIVE_RIGHT_MOTOR_3 = 0;
     public static final int PAD_DRIVER = 0;
+    public static final int PAD_OPERATOR = 0;
     public static final int ROLLER_MOTOR = 0;
     public static final int ROLLER_DEPLOY = 0;
-    public static final int SHOOTER_MOTOR_1 = 0;
-    public static final int SHOOTER_MOTOR_2 = 0;
-    public static final int DISENGAGE_PISTON = 0;
-    public static final int PAWL_PISTON = 0;
-    public static final int LOW_WIND_UP_LIMIT = 0;
-    public static final int HIGH_WIND_UP_LIMIT = 0;
+    public static final int LAUNCH = 0;
+    public static final int HOLDER = 0;
     
 }
