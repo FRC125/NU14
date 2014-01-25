@@ -10,7 +10,7 @@ import com.nutrons.aerialassist.commands.CommandBase;
 public class DTManualTankCmd extends CommandBase {
 
     public DTManualTankCmd() {
-        
+        requires(dt);
     }
 
     // Called just before this Command runs the first time

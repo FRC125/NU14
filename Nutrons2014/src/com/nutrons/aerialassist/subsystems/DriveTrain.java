@@ -12,9 +12,9 @@ import edu.wpi.first.wpilibj.Gyro;
  * @author Camilo
  */
 public class DriveTrain extends Subsystem {
-   
+
     private double tSens = 1;
-    
+
     public final double LEFT_SCALE = 1.0;
     public final double RIGHT_SCALE = 1.0;
 
@@ -24,28 +24,28 @@ public class DriveTrain extends Subsystem {
     Gyro gyro = new Gyro(RobotMap.DRIVETRAIN_GYRO);
     private final Encoder leftEncoder = new Encoder(RobotMap.DRIVE_LEFT_ENC_A, RobotMap.DRIVE_LEFT_ENC_B);
     private final Encoder rightEncoder = new Encoder(RobotMap.DRIVE_RIGHT_ENC_A, RobotMap.DRIVE_RIGHT_ENC_B);
-    
+
     public DriveTrain() {
         leftEncoder.start();
         rightEncoder.start();
     }
-    
+
     public void initDefaultCommand() {
         setDefaultCommand(new DTManualTankCmd());
     }
-    
+
     public void driveLR(double lPower, double rPower) {
         lMotor.set(LEFT_SCALE * lPower);
-        rMotor.set(RIGHT_SCALE * lPower);
-        
+        rMotor.set(RIGHT_SCALE * rPower);
+
     }
-    
+
     public void driveCheesy(double throttle, double wheel, boolean quickTurn) {
         double angularPower;
         double overPower;
         double rPower;
         double lPower;
-        
+
         if(quickTurn) {
             overPower = 1.0;
             angularPower = wheel;
@@ -74,9 +74,9 @@ public class DriveTrain extends Subsystem {
             lPower += overPower * (-1.0 - rPower);
             rPower = -1.0;
         }
-        driveLR(lPower, rPower);   
+        driveLR(lPower, rPower);
     }
-    
+
     public void stop() {
         driveLR(0,0);
     }
