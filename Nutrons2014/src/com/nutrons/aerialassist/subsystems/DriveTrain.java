@@ -40,12 +40,12 @@ public class DriveTrain extends Subsystem {
     public double getAngle() {
         return gyro.getAngle();
     }
-
-    public void driveLR(double lPower, double rPower) {
-        double leftForward = 1.25;
+    private double[] filterDrive(double lPower, double rPower)
+    {
+               double leftForward = 1.25;
         double leftBackwards = 1.0;
         double rightForward = 1.0;
-        double rightBackwards = 1.25;
+        double rightBackwards = 1.4;
         if(lPower > 0) {
             lPower *= leftForward;
 
@@ -64,10 +64,15 @@ public class DriveTrain extends Subsystem {
         if(rPower < 0) {
             rPower *= rightBackwards;
         }
+        double powers[] = {lPower, rPower};
+        return powers;
+    }
+    public void driveLR(double lPower, double rPower) {
+        double powers[] = filterDrive(lPower, rPower);
+        lPower = powers[0];
+        rPower = powers[1];
         lMotor.set(lPower);
         rMotor.set(rPower);
-        System.out.println("Left power is " + (LEFT_SCALE * lPower));
-        System.out.println("Right power is " + (RIGHT_SCALE * rPower));
     }
 
     public void driveCheesy(double throttle, double wheel, boolean quickTurn) {
