@@ -1,13 +1,18 @@
+package com.nutrons.aerialassist.commands.drivetrain;
+import com.nutrons.aerialassist.commands.CommandBase;
 
-package com.nutrons.aerialassist.commands;
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
 
 /**
  *
- * @author bradmiller
+ * @author NUTRONs
  */
-public class ExampleCommand extends CommandBase {
+public class TestDriveCmd extends CommandBase {
 
-    public ExampleCommand() {
+    public TestDriveCmd() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
         requires(dt);
@@ -19,7 +24,7 @@ public class ExampleCommand extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        System.out.println("Angle: " + dt.getAngle());
+        dt.driveLR(0.25, -0.25);
     }
 
     // Make this return true when this Command no longer needs to run execute()

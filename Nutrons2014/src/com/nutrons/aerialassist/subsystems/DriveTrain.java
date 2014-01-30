@@ -4,9 +4,11 @@ package com.nutrons.aerialassist.subsystems;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import com.nutrons.aerialassist.RobotMap;
+import com.nutrons.aerialassist.commands.ExampleCommand;
+import com.nutrons.aerialassist.commands.drivetrain.CheesyDriveCmd;
 import com.nutrons.aerialassist.commands.drivetrain.DTManualTankCmd;
-import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.Gyro;
+import com.nutrons.aerialassist.commands.drivetrain.TestDriveCmd;
+import edu.wpi.first.wpilibj.*;
 
 /**
  * @author Camilo
@@ -19,8 +21,8 @@ public class DriveTrain extends Subsystem {
     public final double RIGHT_SCALE = 1.0;
 
     // robot parts
-    Talon lMotor = new Talon(RobotMap.DRIVE_LEFT);
-    Talon rMotor = new Talon(RobotMap.DRIVE_RIGHT);
+    SpeedController lMotor = new Victor(RobotMap.DRIVE_LEFT);
+    SpeedController rMotor = new Victor(RobotMap.DRIVE_RIGHT);
     Gyro gyro = new Gyro(RobotMap.DRIVETRAIN_GYRO);
     private final Encoder leftEncoder = new Encoder(RobotMap.DRIVE_LEFT_ENC_A, RobotMap.DRIVE_LEFT_ENC_B);
     private final Encoder rightEncoder = new Encoder(RobotMap.DRIVE_RIGHT_ENC_A, RobotMap.DRIVE_RIGHT_ENC_B);
@@ -28,16 +30,44 @@ public class DriveTrain extends Subsystem {
     public DriveTrain() {
         leftEncoder.start();
         rightEncoder.start();
+        gyro.reset();
     }
 
     public void initDefaultCommand() {
-        setDefaultCommand(new DTManualTankCmd());
+        setDefaultCommand(new CheesyDriveCmd());
+    }
+
+    public double getAngle() {
+        return gyro.getAngle();
     }
 
     public void driveLR(double lPower, double rPower) {
-        lMotor.set(LEFT_SCALE * lPower);
-        rMotor.set(RIGHT_SCALE * rPower);
+        double leftForward = 1.25;
+        double leftBackwards = 1.0;
+        double rightForward = 1.0;
+        double rightBackwards = 1.25;
+        if(lPower > 0) {
+            lPower *= leftForward;
 
+        }
+
+        if(lPower < 0) {
+            lPower *= leftBackwards;
+
+        }
+
+        if(rPower > 0) {
+            rPower *= rightForward;
+
+        }
+
+        if(rPower < 0) {
+            rPower *= rightBackwards;
+        }
+        lMotor.set(lPower);
+        rMotor.set(rPower);
+        System.out.println("Left power is " + (LEFT_SCALE * lPower));
+        System.out.println("Right power is " + (RIGHT_SCALE * rPower));
     }
 
     public void driveCheesy(double throttle, double wheel, boolean quickTurn) {
@@ -74,7 +104,7 @@ public class DriveTrain extends Subsystem {
             lPower += overPower * (-1.0 - rPower);
             rPower = -1.0;
         }
-        driveLR(lPower, rPower);
+        driveLR(-lPower, rPower);
     }
 
     public void stop() {

@@ -19,7 +19,7 @@ public class RobotMap {
 
     // TODO: Change the values below.
     public static final int DRIVE_LEFT = 2;
-    public static final int DRIVE_RIGHT = 3;
+    public static final int DRIVE_RIGHT = 4;
     public static final int PAD_DRIVER = 1;
     public static final int DRIVETRAIN_GYRO = 1;
     public static final int DRIVE_LEFT_ENC_A = 2;
