@@ -18,11 +18,11 @@ public class DriveTrain extends Subsystem {
     private double tSens = 1;
 
     public final double LEFT_SCALE = 1.0;
-    public final double RIGHT_SCALE = 1.0;
+    public final double RIGHT_SCALE = -1.0;
 
     // robot parts
-    SpeedController lMotor = new Victor(RobotMap.DRIVE_LEFT);
-    SpeedController rMotor = new Victor(RobotMap.DRIVE_RIGHT);
+    SpeedController lMotor = new Talon(RobotMap.DRIVE_LEFT);
+    SpeedController rMotor = new Talon(RobotMap.DRIVE_RIGHT);
     Gyro gyro = new Gyro(RobotMap.DRIVETRAIN_GYRO);
     private final Encoder leftEncoder = new Encoder(RobotMap.DRIVE_LEFT_ENC_A, RobotMap.DRIVE_LEFT_ENC_B);
     private final Encoder rightEncoder = new Encoder(RobotMap.DRIVE_RIGHT_ENC_A, RobotMap.DRIVE_RIGHT_ENC_B);
@@ -34,7 +34,7 @@ public class DriveTrain extends Subsystem {
     }
 
     public void initDefaultCommand() {
-        setDefaultCommand(new CheesyDriveCmd());
+        setDefaultCommand(new DTManualTankCmd());
     }
 
     public double getAngle() {
@@ -42,7 +42,7 @@ public class DriveTrain extends Subsystem {
     }
     private double[] filterDrive(double lPower, double rPower)
     {
-               double leftForward = 1.25;
+        double leftForward = 1.25;
         double leftBackwards = 1.0;
         double rightForward = 1.0;
         double rightBackwards = 1.4;

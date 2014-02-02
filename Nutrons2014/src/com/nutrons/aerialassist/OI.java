@@ -1,6 +1,9 @@
 
 package com.nutrons.aerialassist;
 
+import com.nutrons.aerialassist.commands.intake.AcquireBallCmd;
+import com.nutrons.aerialassist.commands.intake.ReverseIntakeCmd;
+import com.nutrons.aerialassist.commands.intake.StopIntakeCmd;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStationEnhancedIO;
 import edu.wpi.first.wpilibj.DriverStationEnhancedIO.EnhancedIOException;
@@ -56,8 +59,17 @@ public class OI {
     private final int DRIVE_RIGHT_AXIS = 4;
 
     private Button quickTurn = new JoystickButton(driverPad, 5);
+    private Button acquireBall = new JoystickButton(driverPad, 6);
+    private Button reverseIntake = new JoystickButton(driverPad, 4);
     private DriverStationEnhancedIO io = DriverStation.getInstance().getEnhancedIO();
 
+    public OI()
+    {
+        acquireBall.whenPressed(new AcquireBallCmd());
+        acquireBall.whenReleased(new StopIntakeCmd());
+        reverseIntake.whenPressed(new ReverseIntakeCmd());
+        reverseIntake.whenReleased(new StopIntakeCmd());
+    }
      private double capAndBand(double value) {
         value = Utils.deadband(value, .15, -1);
         value = Utils.deadband(value, .15, 0);
