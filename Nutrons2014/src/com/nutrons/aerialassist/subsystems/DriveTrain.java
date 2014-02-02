@@ -87,7 +87,7 @@ public class DriveTrain extends Subsystem {
         }
         else {
             overPower = 0.0;
-            angularPower = Math.abs(throttle) * wheel * tSens;
+            angularPower = throttle * wheel * tSens;
         }
         rPower = throttle;
         lPower = throttle;
