@@ -27,4 +27,11 @@ public class RobotMap {
     public static final int DRIVE_LEFT_ENC_B = 3;
     public static final int DRIVE_RIGHT_ENC_A = 4;
     public static final int DRIVE_RIGHT_ENC_B = 1;
+    
+    
+    public static final double ROBOT_MAX_SPEED = 13.0;
+    
+    public static final double DRIVE_KP = 0.0;
+    public static final double DRIVE_KI = 0.0;
+    public static final double DRIVE_KD = 1.0;
 }

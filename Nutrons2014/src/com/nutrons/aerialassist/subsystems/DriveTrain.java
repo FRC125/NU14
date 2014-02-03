@@ -8,6 +8,7 @@ import com.nutrons.aerialassist.commands.ExampleCommand;
 import com.nutrons.aerialassist.commands.drivetrain.CheesyDriveCmd;
 import com.nutrons.aerialassist.commands.drivetrain.DTManualTankCmd;
 import com.nutrons.aerialassist.commands.drivetrain.TestDriveCmd;
+import com.nutrons.lib.VelocityEncoder;
 import edu.wpi.first.wpilibj.*;
 
 /**
@@ -26,11 +27,17 @@ public class DriveTrain extends Subsystem {
     Gyro gyro = new Gyro(RobotMap.DRIVETRAIN_GYRO);
     private final Encoder leftEncoder = new Encoder(RobotMap.DRIVE_LEFT_ENC_A, RobotMap.DRIVE_LEFT_ENC_B);
     private final Encoder rightEncoder = new Encoder(RobotMap.DRIVE_RIGHT_ENC_A, RobotMap.DRIVE_RIGHT_ENC_B);
+    private PIDController leftVPID = new PIDController(RobotMap.DRIVE_KP, RobotMap.DRIVE_KI, RobotMap.DRIVE_KD, (VelocityEncoder)leftEncoder, lMotor);
+    private PIDController rightVPID = new PIDController(RobotMap.DRIVE_KP, RobotMap.DRIVE_KI, RobotMap.DRIVE_KD, (VelocityEncoder)rightEncoder, rMotor);
 
+    
+    
     public DriveTrain() {
         leftEncoder.start();
         rightEncoder.start();
         gyro.reset();
+        leftVPID.enable();
+        rightVPID.enable();
     }
 
     public void initDefaultCommand() {
@@ -40,39 +47,12 @@ public class DriveTrain extends Subsystem {
     public double getAngle() {
         return gyro.getAngle();
     }
-    private double[] filterDrive(double lPower, double rPower)
-    {
-        double leftForward = 1.25;
-        double leftBackwards = 1.0;
-        double rightForward = 1.0;
-        double rightBackwards = 1.4;
-        if(lPower > 0) {
-            lPower *= leftForward;
 
-        }
-
-        if(lPower < 0) {
-            lPower *= leftBackwards;
-
-        }
-
-        if(rPower > 0) {
-            rPower *= rightForward;
-
-        }
-
-        if(rPower < 0) {
-            rPower *= rightBackwards;
-        }
-        double powers[] = {lPower, rPower};
-        return powers;
-    }
     public void driveLR(double lPower, double rPower) {
-        double powers[] = filterDrive(lPower, rPower);
-        lPower = powers[0];
-        rPower = powers[1];
-        lMotor.set(lPower);
-        rMotor.set(rPower);
+          leftVPID.setSetpoint(RobotMap.ROBOT_MAX_SPEED*lPower);
+          rightVPID.setSetpoint(RobotMap.ROBOT_MAX_SPEED*rPower);
+//        lMotor.set(lPower);
+//        rMotor.set(rPower);
     }
 
     public void driveCheesy(double throttle, double wheel, boolean quickTurn) {
