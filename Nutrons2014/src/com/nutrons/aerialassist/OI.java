@@ -123,6 +123,9 @@ public class OI {
     public boolean getDriveQuickTurn() throws EnhancedIOException {
         return quickTurn.get();
     }
-
+    public double getWinchSpeed()
+    {
+        return capAndBand(driverPad.getRawAxis(2));
+    }
 }
 

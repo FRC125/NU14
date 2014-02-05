@@ -27,4 +27,6 @@ public class RobotMap {
     public static final int DRIVE_LEFT_ENC_B = 3;
     public static final int DRIVE_RIGHT_ENC_A = 4;
     public static final int DRIVE_RIGHT_ENC_B = 1;
+    public static final int WINCH = 4;
+    public static final int WINCH2 = 3;
 }
