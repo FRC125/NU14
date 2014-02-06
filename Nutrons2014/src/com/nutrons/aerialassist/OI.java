@@ -51,16 +51,16 @@ public class OI {
     // button.w5henReleased(new ExampleCommand());
 
     //Joysticks
-    private final Joystick driverPad = new Joystick(RobotMap.PAD_DRIVER);
-
+    private final Joystick operatorPad = new Joystick(RobotMap.PAD_OP);
+    private final Joystick driverLeft = new Joystick(RobotMap.DRIVE_LEFT_JOY);
+    private final Joystick driverRight = new Joystick(RobotMap.DRIVE_RIGHT_JOY);
     // TODO: Adjust values
 
     private final int DRIVE_LEFT_AXIS = 2;
-    private final int DRIVE_RIGHT_AXIS = 4;
-
-    private Button quickTurn = new JoystickButton(driverPad, 5);
-    private Button acquireBall = new JoystickButton(driverPad, 6);
-    private Button reverseIntake = new JoystickButton(driverPad, 4);
+    private final int DRIVE_RIGHT_AXIS = 2;
+    private Button quickTurn = new JoystickButton(operatorPad, 5);
+    private Button acquireBall = new JoystickButton(operatorPad, 6);
+    private Button reverseIntake = new JoystickButton(operatorPad, 4);
     private DriverStationEnhancedIO io = DriverStation.getInstance().getEnhancedIO();
 
     public OI()
@@ -105,19 +105,19 @@ public class OI {
     }
 
     public double getDriveRight() {
-        return capAndBand(driverPad.getRawAxis(DRIVE_RIGHT_AXIS));
+        return capAndBand(driverRight.getRawAxis(DRIVE_RIGHT_AXIS));
     }
 
     public double getDriveLeft() {
-        return -capAndBand(driverPad.getRawAxis(DRIVE_LEFT_AXIS));
+        return -capAndBand(driverLeft.getRawAxis(DRIVE_LEFT_AXIS));
     }
 
     public double getDriveThrottle() {
-        return capAndBand(driverPad.getRawAxis(2));
+        return capAndBand(operatorPad.getRawAxis(2));
     }
 
     public double getDriveWheel() {
-        return capAndBand(driverPad.getRawAxis(3));
+        return capAndBand(operatorPad.getRawAxis(3));
     }
 
     public boolean getDriveQuickTurn() throws EnhancedIOException {
@@ -125,7 +125,7 @@ public class OI {
     }
     public double getWinchSpeed()
     {
-        return capAndBand(driverPad.getRawAxis(2));
+        return capAndBand(operatorPad.getRawAxis(2));
     }
 }
 
