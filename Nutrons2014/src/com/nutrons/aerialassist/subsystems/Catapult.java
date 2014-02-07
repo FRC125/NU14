@@ -23,20 +23,21 @@ public class Catapult extends Subsystem {
     private SpeedController motor2 = new Talon(RobotMap.WINCH2);
     private DigitalInput sensor = new DigitalInput(RobotMap.WINCH_SENSOR);
     private boolean readyToFire = false;
-
+    public final int FORWARDS = 1;
+    
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommantd(new MySpecialCommand());
         setDefaultCommand(new ShooterTestCmd());
     }
     public boolean isWound() {
-        return sensor.get();
+        return !sensor.get();
     }
     public boolean isReady() {
         return readyToFire;
     }
-    public void setReady(boolean a) {
-        readyToFire = a;
+    public void setReady(boolean ready) {
+        readyToFire = ready;
     }
     public void setSpeed(double speed)
     {

@@ -8,7 +8,7 @@ import com.nutrons.aerialassist.commands.CommandBase;
 
 /**
  *
- * @author NUTRONs
+ * @author Toby
  */
 public class ShooterWindCmd extends CommandBase {
 
@@ -22,11 +22,14 @@ public class ShooterWindCmd extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+        if(!isFinished()) {
+            catapult.setSpeed(catapult.FORWARDS);
+        }
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return catapult.isWound();
     }
 
     // Called once after isFinished returns true
