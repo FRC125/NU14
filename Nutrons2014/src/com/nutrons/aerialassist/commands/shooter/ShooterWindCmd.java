@@ -34,6 +34,7 @@ public class ShooterWindCmd extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
+        catapult.setSpeed(0);
     }
 
     // Called when another command which requires one or more of the same
