@@ -5,12 +5,15 @@
 package com.nutrons.aerialassist.commands.intake;
 
 import com.nutrons.aerialassist.commands.CommandBase;
+import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  * @author NUTRONs
  */
 public class ActivateRollersCmd extends CommandBase {
+
+    Command pullBall = new StopIntakeCmd();
 
     public ActivateRollersCmd() {
         // Use requires() here to declare subsystem dependencies
@@ -34,6 +37,7 @@ public class ActivateRollersCmd extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
+        
     }
 
     // Called when another command which requires one or more of the same

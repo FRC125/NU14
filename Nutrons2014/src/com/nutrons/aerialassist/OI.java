@@ -2,9 +2,7 @@
 package com.nutrons.aerialassist;
 
 import com.nutrons.aerialassist.commands.intake.*;
-import com.nutrons.aerialassist.commands.shooter.ShooterFireCmd;
-import com.nutrons.aerialassist.commands.shooter.ShooterStopCmd;
-import com.nutrons.aerialassist.commands.shooter.ShooterWindCmd;
+import com.nutrons.aerialassist.commands.shooter.*;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStationEnhancedIO;
 import edu.wpi.first.wpilibj.DriverStationEnhancedIO.EnhancedIOException;
@@ -73,9 +71,7 @@ public class OI {
         reverseIntake.whenPressed(new ReverseRollersCmd());
         reverseIntake.whenReleased(new StopRollersCmd());
         fireCatapult.whileHeld(new ShooterFireCmd());
-        fireCatapult.whenReleased(new ShooterStopCmd());
-        windCatapult.whileHeld(new ShooterWindCmd());
-        windCatapult.whenReleased(new ShooterStopCmd());
+        windCatapult.whenPressed(new ShooterLoadCmd());
     }
      private double capAndBand(double value) {
         value = Utils.deadband(value, .15, -1);

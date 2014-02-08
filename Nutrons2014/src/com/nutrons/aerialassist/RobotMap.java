@@ -24,16 +24,17 @@ public class RobotMap {
     public static final int DRIVE_RIGHT_JOY = 2;
     public static final int DRIVE_LEFT_JOY = 3;
     public static final int INTAKE_MOTOR= 5;
-    public static final int DRIVETRAIN_GYRO = 1;
+    public static final int DRIVETRAIN_GYRO = 4;
     public static final int DRIVE_LEFT_ENC_A = 6;
-    public static final int DRIVE_LEFT_ENC_B = 3;
+    public static final int DRIVE_LEFT_ENC_B = 7;
     public static final int DRIVE_RIGHT_ENC_A = 4;
     public static final int DRIVE_RIGHT_ENC_B = 5;
     public static final int WINCH = 4;
     public static final int WINCH2 = 3;
     public static final int WINCH_SENSOR = 2;
-    public static final int INTAKE_PISTON = 1;
+    public static final int INTAKE_PISTON = 7;
     public static final int INTAKE_UP_PISTON = 8;
     public static final int AIR_PRESSURE = 1;
     public static final int COMPRESSOR_PORT = 3;
+    public static final int INTAKE_BUMPER = 3;
 }

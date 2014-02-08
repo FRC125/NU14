@@ -5,10 +5,7 @@
 package com.nutrons.aerialassist.subsystems;
 
 import com.nutrons.aerialassist.RobotMap;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.Solenoid;
-import edu.wpi.first.wpilibj.SpeedController;
-import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -21,6 +18,7 @@ public class Intake extends Subsystem {
     public final double FORWARDS = 1.0;
     private SpeedController intakeMotor = new Talon(RobotMap.INTAKE_MOTOR);
     private DoubleSolenoid dropDown = new DoubleSolenoid(RobotMap.INTAKE_PISTON, RobotMap.INTAKE_UP_PISTON);
+    private DigitalInput sensor = new DigitalInput(RobotMap.INTAKE_BUMPER);
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
@@ -32,10 +30,14 @@ public class Intake extends Subsystem {
 
     public void deploy()
     {
-        dropDown.set(DoubleSolenoid.Value.kForward);
+        dropDown.set(DoubleSolenoid.Value.kReverse);
     }
     public void retract()
     {
-        dropDown.set(DoubleSolenoid.Value.kReverse);
+        dropDown.set(DoubleSolenoid.Value.kForward);
     }
+    public boolean isBallAcquired() {
+        return !sensor.get();
+    }
+
 }

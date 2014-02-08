@@ -23,23 +23,18 @@ public class DriveTrain extends Subsystem {
     // robot parts
     SpeedController lMotor = new Talon(RobotMap.DRIVE_LEFT);
     SpeedController rMotor = new Talon(RobotMap.DRIVE_RIGHT);
-    Gyro gyro = new Gyro(RobotMap.DRIVETRAIN_GYRO);
     private final Encoder leftEncoder = new Encoder(RobotMap.DRIVE_LEFT_ENC_A, RobotMap.DRIVE_LEFT_ENC_B);
     private final Encoder rightEncoder = new Encoder(RobotMap.DRIVE_RIGHT_ENC_A, RobotMap.DRIVE_RIGHT_ENC_B);
 
     public DriveTrain() {
         leftEncoder.start();
         rightEncoder.start();
-        gyro.reset();
     }
 
     public void initDefaultCommand() {
         setDefaultCommand(new DTManualTankCmd());
     }
 
-    public double getAngle() {
-        return gyro.getAngle();
-    }
     private double[] filterDrive(double lPower, double rPower)
     {
         double leftForward = 1.25;
