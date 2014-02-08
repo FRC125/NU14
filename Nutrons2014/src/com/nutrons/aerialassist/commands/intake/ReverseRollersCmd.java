@@ -10,9 +10,9 @@ import com.nutrons.aerialassist.commands.CommandBase;
  *
  * @author NUTRONs
  */
-public class ReverseIntakeCmd extends CommandBase {
+public class ReverseRollersCmd extends CommandBase {
 
-    public ReverseIntakeCmd() {
+    public ReverseRollersCmd() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
         requires(intake);
@@ -24,7 +24,7 @@ public class ReverseIntakeCmd extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        intake.setMotorSpeed(-1.0);
+        intake.setMotorSpeed(-intake.FORWARDS);
     }
 
     // Make this return true when this Command no longer needs to run execute()

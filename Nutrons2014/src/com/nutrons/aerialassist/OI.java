@@ -1,9 +1,10 @@
 
 package com.nutrons.aerialassist;
 
-import com.nutrons.aerialassist.commands.intake.AcquireBallCmd;
-import com.nutrons.aerialassist.commands.intake.ReverseIntakeCmd;
-import com.nutrons.aerialassist.commands.intake.StopIntakeCmd;
+import com.nutrons.aerialassist.commands.intake.*;
+import com.nutrons.aerialassist.commands.shooter.ShooterFireCmd;
+import com.nutrons.aerialassist.commands.shooter.ShooterStopCmd;
+import com.nutrons.aerialassist.commands.shooter.ShooterWindCmd;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStationEnhancedIO;
 import edu.wpi.first.wpilibj.DriverStationEnhancedIO.EnhancedIOException;
@@ -61,14 +62,20 @@ public class OI {
     private Button quickTurn = new JoystickButton(operatorPad, 5);
     private Button acquireBall = new JoystickButton(operatorPad, 6);
     private Button reverseIntake = new JoystickButton(operatorPad, 4);
+    private Button windCatapult = new JoystickButton(operatorPad, 7);
+    private Button fireCatapult = new JoystickButton(operatorPad, 8);
     private DriverStationEnhancedIO io = DriverStation.getInstance().getEnhancedIO();
 
     public OI()
     {
         acquireBall.whenPressed(new AcquireBallCmd());
         acquireBall.whenReleased(new StopIntakeCmd());
-        reverseIntake.whenPressed(new ReverseIntakeCmd());
-        reverseIntake.whenReleased(new StopIntakeCmd());
+        reverseIntake.whenPressed(new ReverseRollersCmd());
+        reverseIntake.whenReleased(new StopRollersCmd());
+        fireCatapult.whileHeld(new ShooterFireCmd());
+        fireCatapult.whenReleased(new ShooterStopCmd());
+        windCatapult.whileHeld(new ShooterWindCmd());
+        windCatapult.whenReleased(new ShooterStopCmd());
     }
      private double capAndBand(double value) {
         value = Utils.deadband(value, .15, -1);

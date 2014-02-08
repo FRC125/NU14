@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import com.nutrons.aerialassist.commands.CommandBase;
 import com.nutrons.aerialassist.commands.drivetrain.DTManualTankCmd;
+import edu.wpi.first.wpilibj.Compressor;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -25,6 +26,7 @@ import com.nutrons.aerialassist.commands.drivetrain.DTManualTankCmd;
 public class Nutrons2014 extends IterativeRobot {
 
     //Command autonomousCommand;
+    private Compressor comp = new Compressor(RobotMap.AIR_PRESSURE, RobotMap.COMPRESSOR_PORT);
 
     /**
      * This function is run when the robot is first started up and should be
@@ -54,7 +56,8 @@ public class Nutrons2014 extends IterativeRobot {
         // teleop starts running. If you want the autonomous to
         // continue until interrupted by another command, remove
         // this line or comment it out.
-        //autonomousCommand.cancel();u
+        //autonomousCommand.cancel();
+        comp.start();
     }
 
     /**
@@ -69,5 +72,9 @@ public class Nutrons2014 extends IterativeRobot {
      */
     public void testPeriodic() {
         LiveWindow.run();
+    }
+
+    public void disabledInit() {
+        comp.stop();
     }
 }
