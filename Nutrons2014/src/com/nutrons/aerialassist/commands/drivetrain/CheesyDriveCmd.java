@@ -24,6 +24,7 @@ public class CheesyDriveCmd extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+        System.out.println(-oi.getDriveWheel());
         try {
             dt.driveCheesy(oi.getDriveThrottle(),-oi.getDriveWheel(), oi.getDriveQuickTurn());
         } catch (EnhancedIOException ex) {

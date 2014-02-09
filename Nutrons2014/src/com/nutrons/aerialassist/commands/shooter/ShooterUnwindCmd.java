@@ -20,6 +20,7 @@ public class ShooterUnwindCmd extends CommandBase {
     // Called just before this Command runs the first time
     protected void initialize() {
         if (!catapult.isWound()) {
+            catapult.setSpeed(0);
             this.getGroup().cancel();
             this.end();
             

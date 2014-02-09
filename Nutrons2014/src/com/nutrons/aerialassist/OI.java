@@ -57,7 +57,7 @@ public class OI {
 
     private final int DRIVE_LEFT_AXIS = 2;
     private final int DRIVE_RIGHT_AXIS = 2;
-    private Button quickTurn = new JoystickButton(operatorPad, 5);
+    private Button quickTurn = new JoystickButton(driverLeft, 1);
     private Button acquireBall = new JoystickButton(operatorPad, 6);
     private Button reverseIntake = new JoystickButton(operatorPad, 4);
     private Button windCatapult = new JoystickButton(operatorPad, 7);
@@ -116,11 +116,11 @@ public class OI {
     }
 
     public double getDriveThrottle() {
-        return capAndBand(operatorPad.getRawAxis(2));
+        return capAndBand(driverLeft.getRawAxis(DRIVE_LEFT_AXIS));
     }
 
     public double getDriveWheel() {
-        return capAndBand(operatorPad.getRawAxis(3));
+        return capAndBand(driverRight.getRawAxis(1));
     }
 
     public boolean getDriveQuickTurn() throws EnhancedIOException {

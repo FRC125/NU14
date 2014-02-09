@@ -32,6 +32,7 @@ public abstract class CommandBase extends Command {
         // Show what command your subsystem is running on the SmartDashboard
         SmartDashboard.putData(dt);
         SmartDashboard.putData(catapult);
+        SmartDashboard.putData(intake);
         SmartDashboard.putBoolean("Is Wound", catapult.isWound());
         SmartDashboard.putBoolean("Is Fired", catapult.isFired());
     }

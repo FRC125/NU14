@@ -15,7 +15,7 @@ public class StopIntakeCmd extends CommandGroup {
 
     public StopIntakeCmd() {
         addSequential(new StopRollersCmd());
-        addSequential(new WaitCommand(0.75));
+        addSequential(new WaitCommand(0.5));
         addSequential(new RetractIntakeCmd());
 
     }

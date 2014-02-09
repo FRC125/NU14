@@ -23,10 +23,10 @@ public class Catapult extends Subsystem {
     private SpeedController motor2 = new Talon(RobotMap.WINCH2);
     private DigitalInput isWound = new DigitalInput(RobotMap.WINCH_SENSOR);
     private DigitalInput isFired = new DigitalInput(RobotMap.FIRED_SENSOR);
-    public final double FORWARDS = -0.5;
+    public final double FORWARDS = -0.75;
 
 
-    private DebouncedBoolean ready = new DebouncedBoolean(1);
+    private DebouncedBoolean ready = new DebouncedBoolean(3);
     private DebouncedBoolean fired = new DebouncedBoolean(1);
 
     public void initDefaultCommand() {
