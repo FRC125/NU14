@@ -14,12 +14,11 @@ public class ShooterUnwindCmd extends CommandBase {
 
     public ShooterUnwindCmd() {
         requires(catapult);
-        requires(intake);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        if(!catapult.isWound()) {
+        if (!catapult.isWound()) {
             end();
         }
     }
