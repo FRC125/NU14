@@ -5,6 +5,7 @@
 package com.nutrons.aerialassist.commands.shooter;
 
 import com.nutrons.aerialassist.commands.CommandBase;
+import edu.wpi.first.wpilibj.command.Scheduler;
 
 /**
  *
@@ -18,9 +19,10 @@ public class ShooterUnwindCmd extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-        System.out.println("Launching Now");
         if (!catapult.isWound()) {
-            end();
+            this.getGroup().cancel();
+            this.end();
+            
         }
     }
 
@@ -31,18 +33,17 @@ public class ShooterUnwindCmd extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        System.out.println(catapult.isFired());
         return catapult.isFired();
     }
 
     // Called once after isFinished returns true
     protected void end() {
-        System.out.println("Done Firing");
         catapult.setSpeed(0);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+        this.end();
     }
 }

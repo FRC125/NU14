@@ -5,6 +5,7 @@
 package com.nutrons.aerialassist.subsystems;
 
 import com.nutrons.aerialassist.RobotMap;
+import com.nutrons.aerialassist.commands.shooter.ShooterStopCmd;
 import com.nutrons.lib.DebouncedBoolean;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.SpeedController;
@@ -22,7 +23,7 @@ public class Catapult extends Subsystem {
     private SpeedController motor2 = new Talon(RobotMap.WINCH2);
     private DigitalInput isWound = new DigitalInput(RobotMap.WINCH_SENSOR);
     private DigitalInput isFired = new DigitalInput(RobotMap.FIRED_SENSOR);
-    public final double FORWARDS = -0.7;
+    public final double FORWARDS = -0.5;
 
 
     private DebouncedBoolean ready = new DebouncedBoolean(1);
@@ -30,7 +31,7 @@ public class Catapult extends Subsystem {
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        //setDefaultCommantd(new MySpecialCommand());
+        setDefaultCommand(new ShooterStopCmd());
     }
     public boolean isWound() {
         ready.feed(!isWound.get());
