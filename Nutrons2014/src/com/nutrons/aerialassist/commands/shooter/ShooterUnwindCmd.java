@@ -18,6 +18,7 @@ public class ShooterUnwindCmd extends CommandBase {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+        System.out.println("Launching Now");
         if (!catapult.isWound()) {
             end();
         }
@@ -30,11 +31,13 @@ public class ShooterUnwindCmd extends CommandBase {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return !catapult.isWound();
+        System.out.println(catapult.isFired());
+        return catapult.isFired();
     }
 
     // Called once after isFinished returns true
     protected void end() {
+        System.out.println("Done Firing");
         catapult.setSpeed(0);
     }
 

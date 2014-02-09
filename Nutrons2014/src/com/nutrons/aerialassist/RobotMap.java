@@ -16,25 +16,39 @@ public class RobotMap {
     // number and the module. For example you with a rangefinder:
     // public static final int rangefinderPort = 1;
     // public static final int rangefinderModule = 1;
-
     // TODO: Change the values below.
-    public static final int DRIVE_LEFT = 1;
-    public static final int DRIVE_RIGHT = 2;
+//    JOYSTICKS
     public static final int PAD_OP = 1;
     public static final int DRIVE_RIGHT_JOY = 2;
     public static final int DRIVE_LEFT_JOY = 3;
-    public static final int INTAKE_MOTOR= 5;
-    public static final int DRIVETRAIN_GYRO = 4;
-    public static final int DRIVE_LEFT_ENC_A = 6;
-    public static final int DRIVE_LEFT_ENC_B = 7;
-    public static final int DRIVE_RIGHT_ENC_A = 4;
-    public static final int DRIVE_RIGHT_ENC_B = 5;
+//    PWMS
+    public static final int DRIVE_LEFT = 1;
+    public static final int DRIVE_RIGHT = 2;
+    public static final int INTAKE_MOTOR = 5;
     public static final int WINCH = 4;
     public static final int WINCH2 = 3;
+//    DIGITAL INPUTS
+    public static final int AIR_PRESSURE = 1;
     public static final int WINCH_SENSOR = 2;
+    public static final int INTAKE_BUMPER = 3;
+    public static final int FIRED_SENSOR = 4;
+    public static final int DRIVE_LEFT_ENC_A = 15;
+    public static final int DRIVE_LEFT_ENC_B = 14;
+    public static final int DRIVE_RIGHT_ENC_A = 13;
+    public static final int DRIVE_RIGHT_ENC_B = 12;
+    
+    
+//    Pneumatics
     public static final int INTAKE_PISTON = 7;
     public static final int INTAKE_UP_PISTON = 8;
-    public static final int AIR_PRESSURE = 1;
+    
+    
+    
+
+//    Relays
     public static final int COMPRESSOR_PORT = 3;
-    public static final int INTAKE_BUMPER = 3;
+    
+//    ANALOG INPUTS
+        public static final int DRIVETRAIN_GYRO = 4;
+
 }
