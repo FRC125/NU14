@@ -13,8 +13,12 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import com.nutrons.aerialassist.commands.CommandBase;
+import com.nutrons.aerialassist.commands.auto.AutoOneBall;
+import com.nutrons.aerialassist.commands.auto.AutoTwoBall;
 import com.nutrons.aerialassist.commands.drivetrain.DTManualTankCmd;
 import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -25,7 +29,8 @@ import edu.wpi.first.wpilibj.Compressor;
  */
 public class Nutrons2014 extends IterativeRobot {
 
-    //Command autonomousCommand;
+    Command autonomousCommand;
+    SendableChooser autoChooser;
     private Compressor comp = new Compressor(RobotMap.AIR_PRESSURE, RobotMap.COMPRESSOR_PORT);
 
     /**
@@ -37,11 +42,14 @@ public class Nutrons2014 extends IterativeRobot {
 
         // Initialize all subsystems
         CommandBase.init();
+        autoChooser.addDefault("One Ball Auto", new AutoOneBall());
+        autoChooser.addDefault("Two Ball Auto", new AutoTwoBall());
+        SmartDashboard.putData("Autonomous Mode", autoChooser);
     }
 
     public void autonomousInit() {
         // schedule the autonomous command (example)
-        //autonomousCommand.start();
+        autonomousCommand.start();
     }
 
     /**
@@ -77,4 +85,9 @@ public class Nutrons2014 extends IterativeRobot {
     public void disabledInit() {
         comp.stop();
     }
+
+    public void disabledPeriodic() {
+        autonomousCommand = (Command) autoChooser.getSelected();
+    }
+
 }

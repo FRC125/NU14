@@ -2,6 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+package com.nutrons.aerialassist.commands.auto;
 
 import com.nutrons.aerialassist.commands.auto.AutoDriveDistanceCmd;
 import com.nutrons.aerialassist.commands.intake.AcquireBallCmd;
@@ -14,15 +15,11 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  *
  * @author NUTRONs
  */
-public class Autonomous extends CommandGroup {
+public class AutoOneBall extends CommandGroup {
 
-    public Autonomous() {
+    public AutoOneBall() {
         addSequential(new ShooterFireCmd());
         addSequential(new ShooterLoadCmd());
         addSequential(new AutoDriveDistanceCmd(5));
-        addSequential(new AcquireBallCmd());
-        addSequential(new AutoDriveDistanceCmd(-10));
-        addSequential(new AutoDriveDistanceCmd(5));
-        addSequential(new ShooterFireCmd());
     }
 }
