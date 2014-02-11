@@ -18,12 +18,12 @@ public class RobotMap {
     // public static final int rangefinderModule = 1;
 
     // TODO: Change the values below.
-    public static final int DRIVE_LEFT_1 = 1;
-    public static final int DRIVE_LEFT_2 = 2;
-    public static final int DRIVE_LEFT_3 = 3;
-    public static final int DRIVE_RIGHT_1 = 4;
-    public static final int DRIVE_RIGHT_2 = 5;
-    public static final int DRIVE_RIGHT_3 = 6;
+    public static final int DRIVE_LEFT_1 = 4;
+    public static final int DRIVE_LEFT_2 = 5;
+    public static final int DRIVE_LEFT_3 = 6;
+    public static final int DRIVE_RIGHT_1 = 1;
+    public static final int DRIVE_RIGHT_2 = 2;
+    public static final int DRIVE_RIGHT_3 = 3;
     public static final int PAD_DRIVER = 1;
     public static final int INTAKE_MOTOR = 9;
     public static final int DRIVETRAIN_GYRO = 1;
