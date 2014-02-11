@@ -7,7 +7,6 @@ import com.nutrons.aerialassist.RobotMap;
 import com.nutrons.aerialassist.commands.ExampleCommand;
 import com.nutrons.aerialassist.commands.drivetrain.CheesyDriveCmd;
 import com.nutrons.aerialassist.commands.drivetrain.DTManualTankCmd;
-import com.nutrons.aerialassist.commands.drivetrain.TestDriveCmd;
 import edu.wpi.first.wpilibj.*;
 
 /**
