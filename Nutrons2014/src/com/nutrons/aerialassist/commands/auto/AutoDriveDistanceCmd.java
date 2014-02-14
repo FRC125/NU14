@@ -17,19 +17,22 @@ public class AutoDriveDistanceCmd extends CommandBase {
     public final double Kp = 1.0;
     private double targetDistance;
     private double initDistance;
+    private double ref;
     private double epsilon = 0.1;
 
     public AutoDriveDistanceCmd(double distance) {
         requires(dt);
+        ref = distance;
         initDistance = dt.getDistance();
-        targetDistance = distance + initDistance;
+        targetDistance = initDistance - distance;
     }
 
     protected void initialize() {
     }
 
     protected void execute() {
-        dt.driveLR((targetDistance-dt.getDistance())*Kp, (targetDistance-dt.getDistance())*Kp);
+        double pow = (dt.getDistance() - targetDistance)/ref*Kp;
+        dt.driveLR(pow, pow);
     }
 
     protected boolean isFinished() {
