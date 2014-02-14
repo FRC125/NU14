@@ -21,8 +21,12 @@ public class DriveTrain extends Subsystem {
     public final double RIGHT_SCALE = -1.0;
 
     // robot parts
-    SpeedController lMotor = new Talon(RobotMap.DRIVE_LEFT);
-    SpeedController rMotor = new Talon(RobotMap.DRIVE_RIGHT);
+    SpeedController lMotor1 = new Talon(RobotMap.DRIVE_LEFT_1);
+    SpeedController lMotor2 = new Talon(RobotMap.DRIVE_LEFT_2);
+    SpeedController lMotor3 = new Talon(RobotMap.DRIVE_LEFT_3);
+    SpeedController rMotor1 = new Talon(RobotMap.DRIVE_RIGHT_1);
+    SpeedController rMotor2 = new Talon(RobotMap.DRIVE_RIGHT_2);
+    SpeedController rMotor3 = new Talon(RobotMap.DRIVE_RIGHT_3);
     private final Encoder leftEncoder = new Encoder(RobotMap.DRIVE_LEFT_ENC_A, RobotMap.DRIVE_LEFT_ENC_B);
     private final Encoder rightEncoder = new Encoder(RobotMap.DRIVE_RIGHT_ENC_A, RobotMap.DRIVE_RIGHT_ENC_B);
 
@@ -66,8 +70,12 @@ public class DriveTrain extends Subsystem {
         double powers[] = filterDrive(lPower, rPower);
         lPower = powers[0];
         rPower = powers[1];
-        lMotor.set(lPower);
-        rMotor.set(rPower);
+        lMotor1.set(lPower);
+        lMotor2.set(lPower);
+        lMotor3.set(lPower);
+        rMotor1.set(rPower);
+        rMotor2.set(rPower);
+        rMotor3.set(rPower);
     }
 
     public void driveCheesy(double throttle, double wheel, boolean quickTurn) {
