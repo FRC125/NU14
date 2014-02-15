@@ -21,9 +21,10 @@ public class ShooterUnwindCmd extends CommandBase {
     protected void initialize() {
         if (!catapult.isWound()) {
             catapult.setSpeed(0);
+            System.out.println("Not wound");
             this.getGroup().cancel();
             this.end();
-            
+
         }
     }
 

@@ -1,20 +1,24 @@
-package com.nutrons.aerialassist.commands.drivetrain;
-import com.nutrons.aerialassist.commands.CommandBase;
-
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+package com.nutrons.aerialassist.commands.drivetrain;
+
+import com.nutrons.aerialassist.commands.CommandBase;
 
 /**
  *
  * @author NUTRONs
  */
-public class TestDriveCmd extends CommandBase {
+public class DriveTimeCmd extends CommandBase {
 
-    public TestDriveCmd() {
+    double cmd_start;
+    double time;
+    public DriveTimeCmd(double time) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+        cmd_start = System.currentTimeMillis();
+        this.time = time;
         requires(dt);
     }
 
@@ -24,12 +28,12 @@ public class TestDriveCmd extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        dt.driveLR(0.25, -0.25);
+        dt.driveLR(0.75, 0.75);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return System.currentTimeMillis() - cmd_start >= time * 1000.0;
     }
 
     // Called once after isFinished returns true

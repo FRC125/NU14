@@ -34,6 +34,8 @@ public class RobotMap {
     public static final int WINCH2 = 10;
 //    DIGITAL INPUTS
     public static final int AIR_PRESSURE = 1;
+    public static final int DRIVETRAIN_GYRO = 4;
+
     public static final int WINCH_SENSOR = 2;
     public static final int INTAKE_BUMPER = 3;
     public static final int FIRED_SENSOR = 4;
@@ -54,6 +56,8 @@ public class RobotMap {
     public static final int COMPRESSOR_PORT = 3;
 
 //    ANALOG INPUTS
-        public static final int DRIVETRAIN_GYRO = 4;
+      
+    public static final int PING_CHANNEL = 1;
+    public static final int ECHO_CHANNEL = 2;
 
 }

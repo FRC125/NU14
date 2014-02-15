@@ -1,14 +1,13 @@
 
 package com.nutrons.aerialassist.subsystems;
 
-import edu.wpi.first.wpilibj.Talon;
-import edu.wpi.first.wpilibj.command.Subsystem;
 import com.nutrons.aerialassist.RobotMap;
-import com.nutrons.aerialassist.commands.ExampleCommand;
-import com.nutrons.aerialassist.commands.drivetrain.CheesyDriveCmd;
 import com.nutrons.aerialassist.commands.drivetrain.DTManualTankCmd;
-import com.nutrons.aerialassist.commands.drivetrain.TestDriveCmd;
-import edu.wpi.first.wpilibj.*;
+import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.SpeedController;
+import edu.wpi.first.wpilibj.Talon;
+import edu.wpi.first.wpilibj.Ultrasonic;
+import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  * @author Camilo
@@ -37,6 +36,10 @@ public class DriveTrain extends Subsystem {
 
     public void initDefaultCommand() {
         setDefaultCommand(new DTManualTankCmd());
+    }
+
+    public double getDistance() {
+        return 0.0;
     }
 
     private double[] filterDrive(double lPower, double rPower)
@@ -75,6 +78,9 @@ public class DriveTrain extends Subsystem {
         lMotor3.set(lPower);
         rMotor1.set(rPower);
         rMotor2.set(rPower);
+        lMotor3.set(rPower);
+        rMotor1.set(rPower);
+        rMotor2.set(lPower);
         rMotor3.set(rPower);
     }
 
