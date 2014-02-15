@@ -48,6 +48,7 @@ public class Nutrons2014 extends IterativeRobot {
     }
 
     public void autonomousInit() {
+        comp.start();
         // schedule the autonomous command (example)
         autonomousCommand.start();
     }

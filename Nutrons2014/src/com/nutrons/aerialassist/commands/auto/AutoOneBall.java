@@ -20,7 +20,7 @@ public class AutoOneBall extends CommandGroup {
 
     public AutoOneBall() {
         addSequential(new ShooterFireCmd());
-        addSequential(new ShooterLoadCmd());
-        addSequential(new DriveTimeCmd(5.0));
+        //addSequential(new ShooterLoadCmd());
+        addSequential(new DriveTimeCmd(5000.0));
     }
 }
