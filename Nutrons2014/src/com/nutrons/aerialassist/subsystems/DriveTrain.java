@@ -28,12 +28,10 @@ public class DriveTrain extends Subsystem {
     SpeedController rMotor3 = new Talon(RobotMap.DRIVE_RIGHT_3);
     private final Encoder leftEncoder = new Encoder(RobotMap.DRIVE_LEFT_ENC_A, RobotMap.DRIVE_LEFT_ENC_B);
     private final Encoder rightEncoder = new Encoder(RobotMap.DRIVE_RIGHT_ENC_A, RobotMap.DRIVE_RIGHT_ENC_B);
-    Ultrasonic ultrasonicSensor = new Ultrasonic(RobotMap.PING_CHANNEL, RobotMap.ECHO_CHANNEL);
 
     public DriveTrain() {
         leftEncoder.start();
         rightEncoder.start();
-        ultrasonicSensor.setDistanceUnits(Ultrasonic.Unit.kInches);
     }
 
     public void initDefaultCommand() {
@@ -41,7 +39,7 @@ public class DriveTrain extends Subsystem {
     }
 
     public double getDistance() {
-        return ultrasonicSensor.getRangeInches();
+        return 0.0;
     }
 
     private double[] filterDrive(double lPower, double rPower)

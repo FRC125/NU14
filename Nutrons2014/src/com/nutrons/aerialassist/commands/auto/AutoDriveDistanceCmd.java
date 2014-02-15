@@ -13,7 +13,7 @@ import com.nutrons.aerialassist.commands.CommandBase;
  * @author John
  */
 public class AutoDriveDistanceCmd extends CommandBase {
-
+    public final double ROBOT_SPEED = 12.0;
     public final double Kp = 1.0;
     private double targetDistance;
     private double initDistance;

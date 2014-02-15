@@ -15,7 +15,7 @@ public class AcquireBallCmd extends CommandGroup {
 
     public AcquireBallCmd() {
         addSequential(new DeployIntakeCmd());
-        addSequential(new VacuumCmd(true));
+        //addSequential(new VacuumCmd(true));
         addSequential(new WaitCommand(.75));
         addSequential(new ActivateRollersCmd());
     }

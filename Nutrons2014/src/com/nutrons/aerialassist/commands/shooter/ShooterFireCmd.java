@@ -6,7 +6,7 @@
 package com.nutrons.aerialassist.commands.shooter;
 import com.nutrons.aerialassist.commands.intake.DeployIntakeCmd;
 import com.nutrons.aerialassist.commands.intake.RetractIntakeCmd;
-import com.nutrons.aerialassist.commands.intake.VacuumCmd;
+//import com.nutrons.aerialassist.commands.intake.VacuumCmd;
 import com.nutrons.aerialassist.commands.shooter.ShooterUnwindCmd;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.WaitCommand;
@@ -19,7 +19,7 @@ public class ShooterFireCmd extends CommandGroup {
 
     public ShooterFireCmd() {
         addSequential(new DeployIntakeCmd());
-        addSequential(new VacuumCmd(false));
+        //addSequential(new VacuumCmd(false));
         addSequential(new WaitCommand(1.5));
         addSequential(new ShooterUnwindCmd());
         addSequential(new WaitCommand(0.75));

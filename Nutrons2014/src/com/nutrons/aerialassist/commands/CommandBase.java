@@ -6,7 +6,7 @@ import com.nutrons.aerialassist.OI;
 import com.nutrons.aerialassist.subsystems.Catapult;
 import com.nutrons.aerialassist.subsystems.DriveTrain;
 import com.nutrons.aerialassist.subsystems.Intake;
-import com.nutrons.aerialassist.subsystems.Vacuum;
+//import com.nutrons.aerialassist.subsystems.Vacuum;
 
 /**
  * The base for all commands. All atomic commands should subclass CommandBase.
@@ -21,7 +21,7 @@ public abstract class CommandBase extends Command {
     public static DriveTrain dt;
     public static Intake intake = new Intake();
     public static Catapult catapult = new Catapult();
-    public static Vacuum vacuum = new Vacuum();
+
     public static void init() {
         // This MUST be here. If the OI creates Commands (which it very likely
         // will), constructing it during the construction of CommandBase (from

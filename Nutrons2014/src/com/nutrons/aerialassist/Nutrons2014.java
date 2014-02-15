@@ -30,7 +30,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Nutrons2014 extends IterativeRobot {
 
     Command autonomousCommand;
-    SendableChooser autoChooser;
+    SendableChooser autoChooser = new SendableChooser();
     private Compressor comp = new Compressor(RobotMap.AIR_PRESSURE, RobotMap.COMPRESSOR_PORT);
 
     /**
@@ -42,8 +42,8 @@ public class Nutrons2014 extends IterativeRobot {
 
         // Initialize all subsystems
         CommandBase.init();
-        autoChooser.addDefault("One Ball Auto", new AutoOneBall());
-        autoChooser.addDefault("Two Ball Auto", new AutoTwoBall());
+        autoChooser.addDefault("One Ball Auto", (Command) new AutoOneBall());
+        autoChooser.addObject("Two Ball Auto", (Command) new AutoTwoBall());
         SmartDashboard.putData("Autonomous Mode", autoChooser);
     }
 
