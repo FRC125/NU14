@@ -1,6 +1,8 @@
 
 package com.nutrons.aerialassist;
 
+import com.nutrons.aerialassist.commands.catcher.CatcherDeployCmd;
+import com.nutrons.aerialassist.commands.catcher.CatcherRetractCmd;
 import com.nutrons.aerialassist.commands.intake.*;
 import com.nutrons.aerialassist.commands.shooter.*;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -63,7 +65,9 @@ public class OI {
     private Button reverseIntake = new JoystickButton(operatorPad, 4);
     private Button windCatapult = new JoystickButton(operatorPad, 7);
     private Button fireCatapult = new JoystickButton(operatorPad, 8);
+    private Button openWings = new JoystickButton(operatorPad, 2);
     private DriverStationEnhancedIO io = DriverStation.getInstance().getEnhancedIO();
+    
 
     public OI()
     {
@@ -73,6 +77,8 @@ public class OI {
         reverseIntake.whenReleased(new StopRollersCmd());
         fireCatapult.whileHeld(new ShooterFireCmd());
         windCatapult.whenPressed(new ShooterLoadCmd());
+        openWings.whenPressed(new CatcherDeployCmd());
+        openWings.whenReleased(new CatcherRetractCmd());
     }
      private double capAndBand(double value) {
         value = Utils.deadband(value, .15, -1);

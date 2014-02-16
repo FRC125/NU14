@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import com.nutrons.aerialassist.OI;
 import com.nutrons.aerialassist.subsystems.Catapult;
+import com.nutrons.aerialassist.subsystems.Catcher;
 import com.nutrons.aerialassist.subsystems.DriveTrain;
 import com.nutrons.aerialassist.subsystems.Intake;
 //import com.nutrons.aerialassist.subsystems.Vacuum;
@@ -21,6 +22,7 @@ public abstract class CommandBase extends Command {
     public static DriveTrain dt;
     public static Intake intake = new Intake();
     public static Catapult catapult = new Catapult();
+    public static Catcher catcher = new Catcher();
 
     public static void init() {
         // This MUST be here. If the OI creates Commands (which it very likely
@@ -35,8 +37,7 @@ public abstract class CommandBase extends Command {
         SmartDashboard.putData(dt);
         SmartDashboard.putData(catapult);
         SmartDashboard.putData(intake);
-        SmartDashboard.putBoolean("Is Wound", catapult.isWound());
-        SmartDashboard.putBoolean("Is Fired", catapult.isFired());
+        SmartDashboard.putBoolean("Intake Down", intake.isDeployed());
     }
 
     public CommandBase(String name) {

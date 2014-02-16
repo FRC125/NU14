@@ -31,49 +31,31 @@ public class RobotMap {
     public static final int INTAKE_MOTOR = 8;
     public static final int WINCH = 9;
     public static final int WINCH2 = 10;
-//    DIGITAL INPUTS
+    // public static final int VACUUM = 9;
+    //    DIGITAL INPUTS
     public static final int AIR_PRESSURE = 1;
-
-    public static final int DRIVETRAIN_GYRO = 4;
-    public static final int DRIVE_LEFT_ENC_A = 6;
-    public static final int DRIVE_LEFT_ENC_B = 7;
-    public static final int DRIVE_RIGHT_ENC_A = 8;
-    public static final int DRIVE_RIGHT_ENC_B = 5;
-
+    public static final int DRIVE_LEFT_ENC_A = 7;
+    public static final int DRIVE_LEFT_ENC_B = 8;
+    public static final int DRIVE_RIGHT_ENC_A = 5;
+    public static final int DRIVE_RIGHT_ENC_B = 6;
     public static final int WINCH_SENSOR = 2;
     public static final int INTAKE_BUMPER = 3;
     public static final int FIRED_SENSOR = 4;
-
-
-
+    public static final int INTAKE_DEPLOYED = 9;
 //    Pneumatics
     public static final int INTAKE_PISTON = 7;
     public static final int INTAKE_UP_PISTON = 8;
-
-
-
-
+    public static final int WING = 2;
 //    Relays
     public static final int COMPRESSOR_PORT = 3;
-
 //    ANALOG INPUTS
-
-    public static final int PING_CHANNEL = 1;
-    public static final int ECHO_CHANNEL = 2;
-   // public static final int VACUUM = 9;
-
-    public static final int PAD_DRIVER = 1;
-    public static final int INTAKE_MOTOR = 3;
-    public static final int DRIVETRAIN_GYRO = 1;
-    public static final int DRIVE_LEFT_ENC_A = 2;
-    public static final int DRIVE_LEFT_ENC_B = 3;
-    public static final int DRIVE_RIGHT_ENC_A = 4;
-    public static final int DRIVE_RIGHT_ENC_B = 1;
-
-
-    public static final double ROBOT_MAX_SPEED = 13.0;
-
-    public static  double DRIVE_KP = 0.0;
-    public static  double DRIVE_KI = 0.0;
-    public static  double DRIVE_KD = 1.0;
+    public static final int DRIVETRAIN_GYRO = 4;
+//    public static final int PING_CHANNEL = 1;
+//    public static final int ECHO_CHANNEL = 2;
+    public static final double ROBOT_MAX_SPEED = 7.0;
+    public static double DRIVE_KP = 0.0;
+    public static double DRIVE_KI = 0.0;
+    public static double DRIVE_KD =  0.09;
+    public static double DRIVE_F = 0.2;
+    
 }

@@ -2,20 +2,20 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.nutrons.aerialassist.commands.intake;
+package com.nutrons.aerialassist.commands.catcher;
 
 import com.nutrons.aerialassist.commands.CommandBase;
 
 /**
  *
- * @author NUTRONs
+ * @author aschreiber
  */
-public class DeployIntakeCmd extends CommandBase {
-
-    public DeployIntakeCmd() {
+public class CatcherDeployCmd extends CommandBase {
+    
+    public CatcherDeployCmd() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-        requires(intake);
+        requires(catcher);
     }
 
     // Called just before this Command runs the first time
@@ -24,12 +24,12 @@ public class DeployIntakeCmd extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        intake.deploy();
+        catcher.deployWings();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return !intake.isDeployed();
+        return true;
     }
 
     // Called once after isFinished returns true

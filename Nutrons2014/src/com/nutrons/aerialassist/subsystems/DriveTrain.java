@@ -3,14 +3,11 @@ package com.nutrons.aerialassist.subsystems;
 
 import com.nutrons.aerialassist.RobotMap;
 import com.nutrons.aerialassist.commands.drivetrain.DTManualTankCmd;
-import edu.wpi.first.wpilibj.PIDOutput;
+import com.nutrons.lib.MultiMotor;
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.SpeedController;
-import edu.wpi.first.wpilibj.Talon;
-import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import com.nutrons.lib.VelocityEncoder;
 import edu.wpi.first.wpilibj.*;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 /**
@@ -24,26 +21,36 @@ public class DriveTrain extends Subsystem {
     public final double RIGHT_SCALE = -1.0;
 
     // robot parts
-    SpeedController lMotor1 = new Talon(RobotMap.DRIVE_LEFT_1);
-    SpeedController lMotor2 = new Talon(RobotMap.DRIVE_LEFT_2);
-    SpeedController lMotor3 = new Talon(RobotMap.DRIVE_LEFT_3);
-    SpeedController rMotor1 = new Talon(RobotMap.DRIVE_RIGHT_1);
-    SpeedController rMotor2 = new Talon(RobotMap.DRIVE_RIGHT_2);
-    SpeedController rMotor3 = new Talon(RobotMap.DRIVE_RIGHT_3);
+//    SpeedController lMotor1 = new Talon(RobotMap.DRIVE_LEFT_1);
+//    SpeedController lMotor2 = new Talon(RobotMap.DRIVE_LEFT_2);
+//    SpeedController lMotor3 = new Talon(RobotMap.DRIVE_LEFT_3);
+//    SpeedController rMotor1 = new Talon(RobotMap.DRIVE_RIGHT_1);
+//    SpeedController rMotor2 = new Talon(RobotMap.DRIVE_RIGHT_2);
+//    SpeedController rMotor3 = new Talon(RobotMap.DRIVE_RIGHT_3);
+    
+    MultiMotor lMotor = new MultiMotor(new int[]{RobotMap.DRIVE_LEFT_1,RobotMap.DRIVE_LEFT_2,RobotMap.DRIVE_LEFT_3});
+    MultiMotor rMotor = new MultiMotor(new int[]{RobotMap.DRIVE_RIGHT_1,RobotMap.DRIVE_RIGHT_2,RobotMap.DRIVE_RIGHT_3});
     private final Encoder leftEncoder = new Encoder(RobotMap.DRIVE_LEFT_ENC_A, RobotMap.DRIVE_LEFT_ENC_B);
     private final Encoder rightEncoder = new Encoder(RobotMap.DRIVE_RIGHT_ENC_A, RobotMap.DRIVE_RIGHT_ENC_B);
-    private PIDController leftVPID = new PIDController(RobotMap.DRIVE_KP, RobotMap.DRIVE_KI, RobotMap.DRIVE_KD, (VelocityEncoder)leftEncoder, lMotor1);
-    private PIDController rightVPID = new PIDController(RobotMap.DRIVE_KP, RobotMap.DRIVE_KI, RobotMap.DRIVE_KD, (VelocityEncoder)rightEncoder, rMotor1);
-
+    private final PIDController leftPID = new PIDController(RobotMap.DRIVE_KP, RobotMap.DRIVE_KI, RobotMap.DRIVE_KD, RobotMap.DRIVE_F, leftEncoder, lMotor);
+    private final PIDController rightPID = new PIDController(RobotMap.DRIVE_KP, RobotMap.DRIVE_KI, RobotMap.DRIVE_KD, RobotMap.DRIVE_F, rightEncoder, rMotor);
 
 
 
     public DriveTrain() {
+        leftEncoder.setPIDSourceParameter(PIDSource.PIDSourceParameter.kRate);
+        rightEncoder.setPIDSourceParameter(PIDSource.PIDSourceParameter.kRate);
+        final double distancePerPulse = 3.14*4/360.0/12.0;
+        leftEncoder.setDistancePerPulse(distancePerPulse);
+        rightEncoder.setDistancePerPulse(distancePerPulse);
+        
         leftEncoder.start();
         rightEncoder.start();
+        
+        leftPID.enable();
+        rightPID.enable();
         //gyro.reset();
-        leftVPID.enable();
-        rightVPID.enable();
+
     }
 
     public void initDefaultCommand() {
@@ -58,8 +65,11 @@ public class DriveTrain extends Subsystem {
 
 
     public void driveLR(double lPower, double rPower) {
-          leftVPID.setSetpoint(RobotMap.ROBOT_MAX_SPEED*lPower);
-          rightVPID.setSetpoint(RobotMap.ROBOT_MAX_SPEED*rPower);
+          getLeftVPID().setSetpoint(RobotMap.ROBOT_MAX_SPEED*lPower);
+          getRightVPID().setSetpoint(RobotMap.ROBOT_MAX_SPEED*rPower);  
+          System.out.println("R: " + rightEncoder.getRate() + " L: " + leftEncoder.getRate());
+          SmartDashboard.putNumber("RIGHT",rightPID.get());
+          SmartDashboard.putNumber("LEFT", leftPID.get());
 //        lMotor.set(lPower);
 //        rMotor.set(rPower);
 
@@ -104,6 +114,30 @@ public class DriveTrain extends Subsystem {
 
     public void stop() {
         driveLR(0,0);
+    }
+
+    public Encoder getLeftEncoder() {
+        return leftEncoder;
+    }
+
+    public Encoder getRightEncoder() {
+        return rightEncoder;
+    }
+    
+    public void resetRightEncoder(){
+        rightEncoder.reset();
+    }
+    
+    public void resetLeftEncoder(){
+        leftEncoder.reset();
+    }
+
+    public PIDController getLeftVPID() {
+        return leftPID;
+    }
+
+    public PIDController getRightVPID() {
+        return rightPID;
     }
 }
 

@@ -19,6 +19,7 @@ public class Intake extends Subsystem {
     private SpeedController intakeMotor = new Talon(RobotMap.INTAKE_MOTOR);
     private DoubleSolenoid dropDown = new DoubleSolenoid(RobotMap.INTAKE_PISTON, RobotMap.INTAKE_UP_PISTON);
     private DigitalInput sensor = new DigitalInput(RobotMap.INTAKE_BUMPER);
+    private DigitalInput deployedSensor = new DigitalInput(RobotMap.INTAKE_DEPLOYED);
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
@@ -38,6 +39,11 @@ public class Intake extends Subsystem {
     }
     public boolean isBallAcquired() {
         return !sensor.get();
+    }
+
+    public boolean isDeployed() {
+        System.out.println("Intake Deployed: " + deployedSensor.get());
+        return deployedSensor.get();
     }
 
 }

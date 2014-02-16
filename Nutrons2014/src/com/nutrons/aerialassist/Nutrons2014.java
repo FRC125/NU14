@@ -50,6 +50,10 @@ public class Nutrons2014 extends IterativeRobot {
         autoChooser.addDefault("One Ball Auto", (Command) new AutoOneBall());
         autoChooser.addObject("Two Ball Auto", (Command) new AutoTwoBall());
         SmartDashboard.putData("Autonomous Mode", autoChooser);
+        SmartDashboard.putData("Left Encoder", CommandBase.dt.getLeftEncoder());
+        SmartDashboard.putData("Right Encoder", CommandBase.dt.getRightEncoder());
+        SmartDashboard.putData("R Vel PID", CommandBase.dt.getRightVPID());
+        SmartDashboard.putData("L Vel PID", CommandBase.dt.getLeftVPID());
     }
 
     public void autonomousInit() {
@@ -71,6 +75,7 @@ public class Nutrons2014 extends IterativeRobot {
         // continue until interrupted by another command, remove
         // this line or comment it out.
         //autonomousCommand.cancel();
+
         comp.start();
     }
 
@@ -78,7 +83,6 @@ public class Nutrons2014 extends IterativeRobot {
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
-        RobotMap.DRIVE_KP = prefs.getDouble("DRIVE_KP", 1.0);
         Scheduler.getInstance().run();
     }
 
