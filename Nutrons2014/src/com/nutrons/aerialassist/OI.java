@@ -58,7 +58,8 @@ public class OI {
     private final int DRIVE_LEFT_AXIS = 2;
     private final int DRIVE_RIGHT_AXIS = 2;
     private Button quickTurn = new JoystickButton(driverLeft, 1);
-    private Button acquireBall = new JoystickButton(operatorPad, 6);
+    private Button acquireBall = new JoystickButton(operatorPad, 1);
+    private Button stopIntake = new JoystickButton(operatorPad, 3);
     private Button reverseIntake = new JoystickButton(operatorPad, 4);
     private Button windCatapult = new JoystickButton(operatorPad, 7);
     private Button fireCatapult = new JoystickButton(operatorPad, 8);
@@ -67,7 +68,7 @@ public class OI {
     public OI()
     {
         acquireBall.whenPressed(new AcquireBallCmd());
-        acquireBall.whenReleased(new StopIntakeCmd());
+        stopIntake.whenPressed(new StopIntakeCmd());
         reverseIntake.whenPressed(new ReverseRollersCmd());
         reverseIntake.whenReleased(new StopRollersCmd());
         fireCatapult.whileHeld(new ShooterFireCmd());

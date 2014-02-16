@@ -78,10 +78,9 @@ public class DriveTrain extends Subsystem {
         lMotor3.set(lPower);
         rMotor1.set(rPower);
         rMotor2.set(rPower);
-        lMotor3.set(rPower);
-        rMotor1.set(rPower);
-        rMotor2.set(lPower);
         rMotor3.set(rPower);
+        System.out.println("lPower: " + (double) lPower + " rPower: " + (double) rPower);
+        System.out.println("lMotor: " + lMotor1.get() + "rMotor: " + rMotor1.get());
     }
 
     public void driveCheesy(double throttle, double wheel, boolean quickTurn) {

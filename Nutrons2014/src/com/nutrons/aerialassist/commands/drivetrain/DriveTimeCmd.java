@@ -17,18 +17,19 @@ public class DriveTimeCmd extends CommandBase {
     public DriveTimeCmd(double time) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-        cmd_start = System.currentTimeMillis();
+
         this.time = time;
         requires(dt);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+        cmd_start = System.currentTimeMillis();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        dt.driveLR(0.75, 0.75);
+        dt.driveLR(0.75, -0.75);
     }
 
     // Make this return true when this Command no longer needs to run execute()

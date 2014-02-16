@@ -11,6 +11,7 @@ import com.nutrons.aerialassist.commands.shooter.ShooterFireCmd;
 import com.nutrons.aerialassist.commands.shooter.ShooterLoadCmd;
 import com.nutrons.aerialassist.commands.shooter.ShooterWindCmd;
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.command.WaitCommand;
 
 /**
  *
@@ -21,6 +22,8 @@ public class AutoOneBall extends CommandGroup {
     public AutoOneBall() {
         addSequential(new ShooterFireCmd());
         //addSequential(new ShooterLoadCmd());
-        addSequential(new DriveTimeCmd(5000.0));
+        addSequential(new AutoDriveTimeCmd(2.0));
+        addSequential(new WaitCommand(0.1));
+        addParallel(new ShooterWindCmd());
     }
 }
