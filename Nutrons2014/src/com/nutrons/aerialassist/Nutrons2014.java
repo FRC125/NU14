@@ -18,6 +18,10 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import com.nutrons.aerialassist.commands.CommandBase;
+import com.nutrons.aerialassist.commands.drivetrain.DTManualTankCmd;
+import edu.wpi.first.wpilibj.Preferences;
+
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -36,10 +40,12 @@ public class Nutrons2014 extends IterativeRobot {
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
      */
+    Preferences prefs;
     public void robotInit() {
         //autonomousCommand = new DTManualTankCmd();
 
         // Initialize all subsystems
+
         CommandBase.init();
         autoChooser.addDefault("One Ball Auto", (Command) new AutoOneBall());
         autoChooser.addObject("Two Ball Auto", (Command) new AutoTwoBall());
@@ -72,6 +78,7 @@ public class Nutrons2014 extends IterativeRobot {
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
+        RobotMap.DRIVE_KP = prefs.getDouble("DRIVE_KP", 1.0);
         Scheduler.getInstance().run();
     }
 

@@ -28,7 +28,6 @@ public class RobotMap {
     public static final int DRIVE_RIGHT_1 = 1;
     public static final int DRIVE_RIGHT_2 = 6;
     public static final int DRIVE_RIGHT_3 = 3;
-    public static final int DRIVE_RIGHT = 2;
     public static final int INTAKE_MOTOR = 8;
     public static final int WINCH = 9;
     public static final int WINCH2 = 10;
@@ -63,4 +62,18 @@ public class RobotMap {
     public static final int ECHO_CHANNEL = 2;
    // public static final int VACUUM = 9;
 
+    public static final int PAD_DRIVER = 1;
+    public static final int INTAKE_MOTOR = 3;
+    public static final int DRIVETRAIN_GYRO = 1;
+    public static final int DRIVE_LEFT_ENC_A = 2;
+    public static final int DRIVE_LEFT_ENC_B = 3;
+    public static final int DRIVE_RIGHT_ENC_A = 4;
+    public static final int DRIVE_RIGHT_ENC_B = 1;
+
+
+    public static final double ROBOT_MAX_SPEED = 13.0;
+
+    public static  double DRIVE_KP = 0.0;
+    public static  double DRIVE_KI = 0.0;
+    public static  double DRIVE_KD = 1.0;
 }
