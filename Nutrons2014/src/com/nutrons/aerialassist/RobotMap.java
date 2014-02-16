@@ -42,10 +42,11 @@ public class RobotMap {
     public static final int INTAKE_BUMPER = 3;
     public static final int FIRED_SENSOR = 4;
     public static final int INTAKE_DEPLOYED = 9;
+    public static final int BANNERED_SENSOR = 10;
 //    Pneumatics
     public static final int INTAKE_PISTON = 7;
     public static final int INTAKE_UP_PISTON = 8;
-    public static final int WING = 2;
+    public static final int WING = 5;
 //    Relays
     public static final int COMPRESSOR_PORT = 3;
 //    ANALOG INPUTS

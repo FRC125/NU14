@@ -2,6 +2,7 @@
 package com.nutrons.aerialassist.commands.drivetrain;
 
 import com.nutrons.aerialassist.commands.CommandBase;
+import com.nutrons.aerialassist.subsystems.Intake;
 
 /**
  *
@@ -20,6 +21,7 @@ public class DTManualTankCmd extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         dt.driveLR(oi.getDriveLeft(), oi.getDriveRight());
+        System.out.println("Intake Seonsor is: " + intake.isDeployed());
     }
 
     // Make this return true when this Command no longer needs to run execute()

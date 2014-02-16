@@ -67,7 +67,7 @@ public class DriveTrain extends Subsystem {
     public void driveLR(double lPower, double rPower) {
           getLeftVPID().setSetpoint(RobotMap.ROBOT_MAX_SPEED*lPower);
           getRightVPID().setSetpoint(RobotMap.ROBOT_MAX_SPEED*rPower);  
-          System.out.println("R: " + rightEncoder.getRate() + " L: " + leftEncoder.getRate());
+          //System.out.println("R: " + rightEncoder.getRate() + " L: " + leftEncoder.getRate());
           SmartDashboard.putNumber("RIGHT",rightPID.get());
           SmartDashboard.putNumber("LEFT", leftPID.get());
 //        lMotor.set(lPower);
