@@ -59,4 +59,7 @@ public class RobotMap {
     public static double DRIVE_KD =  0.09;
     public static double DRIVE_F = 0.2;
     
+    
+    public static double SHOOTER_TIMEOUT = 5.0;
+    
 }

@@ -4,6 +4,7 @@
  */
 package com.nutrons.aerialassist.commands.shooter;
 
+import com.nutrons.aerialassist.RobotMap;
 import com.nutrons.aerialassist.commands.CommandBase;
 
 /**
@@ -14,6 +15,7 @@ public class ShooterWindCmd extends CommandBase {
 
     public ShooterWindCmd() {
         requires(catapult);
+        this.setTimeout(RobotMap.SHOOTER_TIMEOUT);
     }
 
     // Called just before this Command runs the first time
