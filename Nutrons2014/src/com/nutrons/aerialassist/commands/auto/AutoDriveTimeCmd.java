@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.Timer;
 public class AutoDriveTimeCmd extends CommandBase {
 
     double time;
+    double power;
     Timer timer = new Timer();
 
     public AutoDriveTimeCmd(double time) {
@@ -21,6 +22,13 @@ public class AutoDriveTimeCmd extends CommandBase {
         // eg. requires(chassis);
         requires(dt);
         this.time = time;
+        this.power = 0.75;
+    }
+    
+    public AutoDriveTimeCmd(double time, double power) {
+        requires(dt);
+        this.time = time;
+        this.power = power;
     }
 
     // Called just before this Command runs the first time
@@ -31,7 +39,7 @@ public class AutoDriveTimeCmd extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        dt.driveLR(.25, -.25);
+        dt.driveLR(power, -power);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -41,6 +49,7 @@ public class AutoDriveTimeCmd extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
+        dt.driveLR(0,0);
     }
 
     // Called when another command which requires one or more of the same

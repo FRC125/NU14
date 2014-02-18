@@ -19,6 +19,7 @@ import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import com.nutrons.aerialassist.commands.CommandBase;
+import com.nutrons.aerialassist.commands.auto.AutoThreeBall;
 import com.nutrons.aerialassist.commands.drivetrain.DTManualTankCmd;
 import edu.wpi.first.wpilibj.Preferences;
 
@@ -49,6 +50,7 @@ public class Nutrons2014 extends IterativeRobot {
         CommandBase.init();
         autoChooser.addDefault("One Ball Auto", (Command) new AutoOneBall());
         autoChooser.addObject("Two Ball Auto", (Command) new AutoTwoBall());
+        autoChooser.addObject("Three Ball Auto", (Command) new AutoThreeBall());
         SmartDashboard.putData("Autonomous Mode", autoChooser);
         SmartDashboard.putData("Left Encoder", CommandBase.dt.getLeftEncoder());
         SmartDashboard.putData("Right Encoder", CommandBase.dt.getRightEncoder());

@@ -5,7 +5,6 @@
 package com.nutrons.aerialassist.commands.auto;
 
 import com.nutrons.aerialassist.commands.auto.AutoDriveDistanceCmd;
-import com.nutrons.aerialassist.commands.drivetrain.DriveTimeCmd;
 import com.nutrons.aerialassist.commands.intake.AcquireBallCmd;
 import com.nutrons.aerialassist.commands.shooter.ShooterFireCmd;
 import com.nutrons.aerialassist.commands.shooter.ShooterLoadCmd;

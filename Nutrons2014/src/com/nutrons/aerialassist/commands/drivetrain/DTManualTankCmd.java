@@ -20,7 +20,7 @@ public class DTManualTankCmd extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        dt.driveLR(oi.getDriveLeft(), oi.getDriveRight());
+        dt.driveLR(dt.mapJoystickToPowerOutput(oi.getDriveLeft()), dt.mapJoystickToPowerOutput(oi.getDriveRight()));
         System.out.println("Intake Seonsor is: " + intake.isDeployed());
     }
 
