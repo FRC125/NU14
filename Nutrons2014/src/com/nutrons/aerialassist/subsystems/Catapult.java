@@ -24,7 +24,7 @@ public class Catapult extends Subsystem {
     private DigitalInput isWound = new DigitalInput(RobotMap.WINCH_SENSOR);
     private DigitalInput isFired = new DigitalInput(RobotMap.FIRED_SENSOR);
     private DigitalInput isHot = new DigitalInput(RobotMap.BANNERED_SENSOR);
-    public final double FORWARDS = -0.6;
+    public final double FORWARDS = -0.85;
 
 
     private DebouncedBoolean ready = new DebouncedBoolean(3);
