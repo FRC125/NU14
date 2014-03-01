@@ -1,9 +1,11 @@
 
 package com.nutrons.aerialassist;
 
-import com.nutrons.aerialassist.commands.intake.AcquireBallCmd;
-import com.nutrons.aerialassist.commands.intake.ReverseIntakeCmd;
-import com.nutrons.aerialassist.commands.intake.StopIntakeCmd;
+import com.nutrons.aerialassist.commands.catcher.CatchCmd;
+import com.nutrons.aerialassist.commands.catcher.CatcherDeployCmd;
+import com.nutrons.aerialassist.commands.catcher.CatcherRetractCmd;
+import com.nutrons.aerialassist.commands.intake.*;
+import com.nutrons.aerialassist.commands.shooter.*;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStationEnhancedIO;
 import edu.wpi.first.wpilibj.DriverStationEnhancedIO.EnhancedIOException;
@@ -51,24 +53,37 @@ public class OI {
     // button.w5henReleased(new ExampleCommand());
 
     //Joysticks
-    private final Joystick driverPad = new Joystick(RobotMap.PAD_DRIVER);
-
+    private final Joystick operatorPad = new Joystick(RobotMap.PAD_OP);
+    private final Joystick driverLeft = new Joystick(RobotMap.DRIVE_LEFT_JOY);
+    private final Joystick driverRight = new Joystick(RobotMap.DRIVE_RIGHT_JOY);
     // TODO: Adjust values
 
     private final int DRIVE_LEFT_AXIS = 2;
-    private final int DRIVE_RIGHT_AXIS = 4;
-
-    private Button quickTurn = new JoystickButton(driverPad, 5);
-    private Button acquireBall = new JoystickButton(driverPad, 6);
-    private Button reverseIntake = new JoystickButton(driverPad, 4);
+    private final int DRIVE_RIGHT_AXIS = 2;
+    
+    private Button quickTurn = new JoystickButton(driverLeft, 1);
+    private Button deployIntake = new JoystickButton(operatorPad, 1);
+    private Button retractIntake = new JoystickButton(operatorPad, 3);
+    private Button runRollers = new JoystickButton(operatorPad, 6);
+    private Button reverseIntake = new JoystickButton(operatorPad, 4);
+    private Button windCatapult = new JoystickButton(operatorPad, 7);
+    private Button fireCatapult = new JoystickButton(operatorPad, 8);
+    private Button openWings = new JoystickButton(operatorPad, 2);
     private DriverStationEnhancedIO io = DriverStation.getInstance().getEnhancedIO();
+    
 
     public OI()
     {
-        acquireBall.whenPressed(new AcquireBallCmd());
-        acquireBall.whenReleased(new StopIntakeCmd());
-        reverseIntake.whenPressed(new ReverseIntakeCmd());
-        reverseIntake.whenReleased(new StopIntakeCmd());
+        runRollers.whenPressed(new ActivateRollersCmd());
+        runRollers.whenReleased(new StopRollersCmd());
+        deployIntake.whenPressed(new DeployIntakeCmd());
+        retractIntake.whenPressed(new StopIntakeCmd());
+        reverseIntake.whenPressed(new ReverseRollersCmd());
+        reverseIntake.whenReleased(new StopRollersCmd());
+        fireCatapult.whileHeld(new ShooterFireCmd());
+        windCatapult.whenPressed(new ShooterLoadCmd());
+        openWings.whenPressed(new CatchCmd());
+        openWings.whenReleased(new CatcherRetractCmd());
     }
      private double capAndBand(double value) {
         value = Utils.deadband(value, .15, -1);
@@ -105,24 +120,27 @@ public class OI {
     }
 
     public double getDriveRight() {
-        return capAndBand(driverPad.getRawAxis(DRIVE_RIGHT_AXIS));
+        return driverRight.getRawAxis(DRIVE_RIGHT_AXIS);
     }
 
     public double getDriveLeft() {
-        return -capAndBand(driverPad.getRawAxis(DRIVE_LEFT_AXIS));
+        return -driverLeft.getRawAxis(DRIVE_LEFT_AXIS);
     }
 
     public double getDriveThrottle() {
-        return capAndBand(driverPad.getRawAxis(2));
+        return driverLeft.getRawAxis(DRIVE_LEFT_AXIS);
     }
 
     public double getDriveWheel() {
-        return capAndBand(driverPad.getRawAxis(3));
+        return driverRight.getRawAxis(1);
     }
 
     public boolean getDriveQuickTurn() throws EnhancedIOException {
         return quickTurn.get();
     }
-
+    public double getWinchSpeed()
+    {
+        return capAndBand(operatorPad.getRawAxis(2));
+    }
 }
 

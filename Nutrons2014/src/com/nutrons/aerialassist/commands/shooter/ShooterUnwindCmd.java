@@ -1,47 +1,51 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
+ * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.nutrons.aerialassist.commands.drivetrain;
+package com.nutrons.aerialassist.commands.shooter;
 
-import edu.wpi.first.wpilibj.DriverStationEnhancedIO.EnhancedIOException;
 import com.nutrons.aerialassist.commands.CommandBase;
+import edu.wpi.first.wpilibj.command.Scheduler;
 
 /**
  *
- * @author Nutrons
+ * @author NUTRONs
  */
-public class CheesyDriveCmd extends CommandBase {
+public class ShooterUnwindCmd extends CommandBase {
 
-    public CheesyDriveCmd() {
-        requires(dt);
+    public ShooterUnwindCmd() {
+        requires(catapult);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+        if (!catapult.isWound()) {
+            catapult.setSpeed(0);
+            System.out.println("Not wound");
+            //this.getGroup().cancel();
+            this.end();
+
+        }
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        System.out.println(-oi.getDriveWheel());
-        try {
-            dt.driveCheesy(oi.getDriveThrottle(),-oi.getDriveWheel(), oi.getDriveQuickTurn());
-        } catch (EnhancedIOException ex) {
-        }
+        catapult.setSpeed(catapult.FORWARDS);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return catapult.isFired();
     }
 
     // Called once after isFinished returns true
     protected void end() {
+        catapult.setSpeed(0);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+        this.end();
     }
 }

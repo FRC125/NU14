@@ -8,12 +8,21 @@
 package com.nutrons.aerialassist;
 
 
+import com.nutrons.aerialassist.commands.CommandBase;
+import com.nutrons.aerialassist.commands.auto.AutoOneBall;
+import com.nutrons.aerialassist.commands.auto.AutoTwoBall;
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import com.nutrons.aerialassist.commands.CommandBase;
+import com.nutrons.aerialassist.commands.auto.AutoThreeBall;
 import com.nutrons.aerialassist.commands.drivetrain.DTManualTankCmd;
+import edu.wpi.first.wpilibj.Preferences;
+
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -24,22 +33,35 @@ import com.nutrons.aerialassist.commands.drivetrain.DTManualTankCmd;
  */
 public class Nutrons2014 extends IterativeRobot {
 
-    //Command autonomousCommand;
+    Command autonomousCommand;
+    SendableChooser autoChooser = new SendableChooser();
+    private Compressor comp = new Compressor(RobotMap.AIR_PRESSURE, RobotMap.COMPRESSOR_PORT);
 
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
      */
+    Preferences prefs;
     public void robotInit() {
         //autonomousCommand = new DTManualTankCmd();
 
         // Initialize all subsystems
+
         CommandBase.init();
+        autoChooser.addDefault("One Ball Auto", (Command) new AutoOneBall());
+        autoChooser.addObject("Two Ball Auto", (Command) new AutoTwoBall());
+        autoChooser.addObject("Three Ball Auto", (Command) new AutoThreeBall());
+        SmartDashboard.putData("Autonomous Mode", autoChooser);
+        SmartDashboard.putData("Left Encoder", CommandBase.dt.getLeftEncoder());
+        SmartDashboard.putData("Right Encoder", CommandBase.dt.getRightEncoder());
+        SmartDashboard.putData("R Vel PID", CommandBase.dt.getRightVPID());
+        SmartDashboard.putData("L Vel PID", CommandBase.dt.getLeftVPID());
     }
 
     public void autonomousInit() {
+        comp.start();
         // schedule the autonomous command (example)
-        //autonomousCommand.start();
+        autonomousCommand.start();
     }
 
     /**
@@ -55,6 +77,8 @@ public class Nutrons2014 extends IterativeRobot {
         // continue until interrupted by another command, remove
         // this line or comment it out.
         //autonomousCommand.cancel();
+
+        comp.start();
     }
 
     /**
@@ -70,4 +94,13 @@ public class Nutrons2014 extends IterativeRobot {
     public void testPeriodic() {
         LiveWindow.run();
     }
+
+    public void disabledInit() {
+        comp.stop();
+    }
+
+    public void disabledPeriodic() {
+        autonomousCommand = (Command) autoChooser.getSelected();
+    }
+
 }

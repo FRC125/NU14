@@ -1,16 +1,21 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.nutrons.aerialassist.commands.intake;
 
-package com.nutrons.aerialassist.commands;
+import com.nutrons.aerialassist.commands.CommandBase;
 
 /**
  *
- * @author bradmiller
+ * @author NUTRONs
  */
-public class ExampleCommand extends CommandBase {
+public class ReverseRollersCmd extends CommandBase {
 
-    public ExampleCommand() {
+    public ReverseRollersCmd() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-        requires(dt);
+        requires(intake);
     }
 
     // Called just before this Command runs the first time
@@ -19,7 +24,7 @@ public class ExampleCommand extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        System.out.println("Angle: " + dt.getAngle());
+        intake.setMotorSpeed(-intake.FORWARDS);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -29,10 +34,12 @@ public class ExampleCommand extends CommandBase {
 
     // Called once after isFinished returns true
     protected void end() {
+        intake.setMotorSpeed(0);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
+        this.end();
     }
 }

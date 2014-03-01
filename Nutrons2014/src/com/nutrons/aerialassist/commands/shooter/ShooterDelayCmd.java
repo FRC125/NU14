@@ -1,39 +1,44 @@
-package com.nutrons.aerialassist.commands.drivetrain;
-import com.nutrons.aerialassist.commands.CommandBase;
-
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
+package com.nutrons.aerialassist.commands.shooter;
+
+import com.nutrons.aerialassist.commands.CommandBase;
+import edu.wpi.first.wpilibj.Timer;
 
 /**
  *
- * @author NUTRONs
+ * @author aschreiber
  */
-public class TestDriveCmd extends CommandBase {
-
-    public TestDriveCmd() {
+public class ShooterDelayCmd extends CommandBase {
+    Timer timer = new Timer();
+    double delay = 5.0;
+    
+    public ShooterDelayCmd() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-        requires(dt);
+        requires(catapult);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+        timer.reset();
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        dt.driveLR(0.25, -0.25);
+        timer.start();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return timer.get() > delay || catapult.isHot();
     }
 
     // Called once after isFinished returns true
     protected void end() {
+        timer.stop();
     }
 
     // Called when another command which requires one or more of the same

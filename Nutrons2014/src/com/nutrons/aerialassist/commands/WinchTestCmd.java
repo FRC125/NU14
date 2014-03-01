@@ -1,17 +1,21 @@
-
-package com.nutrons.aerialassist.commands.drivetrain;
-
-import com.nutrons.aerialassist.commands.CommandBase;
-import com.nutrons.aerialassist.subsystems.Intake;
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.nutrons.aerialassist.commands;
 
 /**
  *
- * @author camilo
+ * @author NUTRONs
  */
-public class DTManualTankCmd extends CommandBase {
+public class WinchTestCmd extends CommandBase {
 
-    public DTManualTankCmd() {
-        requires(dt);
+
+    public WinchTestCmd() {
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
+
+        requires(catapult);
     }
 
     // Called just before this Command runs the first time
@@ -20,8 +24,7 @@ public class DTManualTankCmd extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        dt.driveLR(dt.mapJoystickToPowerOutput(oi.getDriveLeft()), dt.mapJoystickToPowerOutput(oi.getDriveRight()));
-        System.out.println("Intake Seonsor is: " + intake.isDeployed());
+        catapult.setSpeed(oi.getWinchSpeed());
     }
 
     // Make this return true when this Command no longer needs to run execute()
