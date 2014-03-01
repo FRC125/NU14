@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj.command.WaitCommand;
 public class AcquireBallCmd extends CommandGroup {
 
     public AcquireBallCmd() {
-        addSequential(new DeployIntakeCmd());
-        addSequential(new ActivateRollersCmd());
+        addParallel(new ClampsUpCmd());
+        addParallel(new DeployIntakeCmd());
     }
 }

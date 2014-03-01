@@ -20,20 +20,19 @@ public class Intake extends Subsystem {
     private DoubleSolenoid dropDown = new DoubleSolenoid(RobotMap.INTAKE_PISTON, RobotMap.INTAKE_UP_PISTON);
     private DigitalInput sensor = new DigitalInput(RobotMap.INTAKE_BUMPER);
     public DigitalInput deployedSensor = new DigitalInput(RobotMap.INTAKE_DEPLOYED);
+    private Solenoid clamps = new Solenoid(RobotMap.CLAMPS);
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
 
-    public void setMotorSpeed(double speed){
+    public void setMotorSpeed(double speed) {
         intakeMotor.set(speed);
     }
-    public void deploy()
-    {
+    public void deploy() {
         dropDown.set(DoubleSolenoid.Value.kReverse);
     }
-    public void retract()
-    {
+    public void retract() {
         dropDown.set(DoubleSolenoid.Value.kForward);
     }
     public boolean isBallAcquired() {
@@ -44,5 +43,12 @@ public class Intake extends Subsystem {
         System.out.println("Intake Deployed: " + deployedSensor.get());
         return !deployedSensor.get();
     }
-
+    
+    public void deployClamp() {
+        clamps.set(true);
+    }
+    
+    public void retractClamp() {
+        clamps.set(false);
+    }
 }

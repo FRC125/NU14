@@ -69,6 +69,7 @@ public class OI {
     private Button windCatapult = new JoystickButton(operatorPad, 7);
     private Button fireCatapult = new JoystickButton(operatorPad, 8);
     private Button openWings = new JoystickButton(operatorPad, 2);
+    private Button clamps = new JoystickButton(operatorPad, 5);
     private DriverStationEnhancedIO io = DriverStation.getInstance().getEnhancedIO();
     
 
@@ -84,6 +85,8 @@ public class OI {
         windCatapult.whenPressed(new ShooterLoadCmd());
         openWings.whenPressed(new CatchCmd());
         openWings.whenReleased(new CatcherRetractCmd());
+        clamps.whenPressed(new ClampsDownCmd());
+        clamps.whenReleased(new ClampsUpCmd());
     }
      private double capAndBand(double value) {
         value = Utils.deadband(value, .15, -1);

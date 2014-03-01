@@ -14,6 +14,7 @@ import edu.wpi.first.wpilibj.command.WaitCommand;
 public class StopIntakeCmd extends CommandGroup {
 
     public StopIntakeCmd() {
+        addSequential(new ClampsDownCmd());
         addSequential(new StopRollersCmd());
         addSequential(new WaitCommand(0.5));
         addSequential(new RetractIntakeCmd());
