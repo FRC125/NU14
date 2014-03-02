@@ -85,8 +85,8 @@ public class OI {
         windCatapult.whenPressed(new ShooterLoadCmd());
         openWings.whenPressed(new CatchCmd());
         openWings.whenReleased(new CatcherRetractCmd());
-        clamps.whenPressed(new ClampsDownCmd());
-        clamps.whenReleased(new ClampsUpCmd());
+        clamps.whenPressed(new ClampsUpCmd());
+        clamps.whenReleased(new ClampsDownCmd());
     }
      private double capAndBand(double value) {
         value = Utils.deadband(value, .15, -1);
