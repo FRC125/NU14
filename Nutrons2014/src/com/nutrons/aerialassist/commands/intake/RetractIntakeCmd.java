@@ -24,12 +24,13 @@ public class RetractIntakeCmd extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+        intake.deployClamp();
         intake.retract();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return true;
+        return intake.isDeployed();
     }
 
     // Called once after isFinished returns true

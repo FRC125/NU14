@@ -47,11 +47,11 @@ public class RobotMap {
     public static final int INTAKE_PISTON = 7;
     public static final int INTAKE_UP_PISTON = 8;
     public static final int WING = 5;
-    public static final int CLAMPS = 6;
+    public static final int CLAMPS = 4;
 //    Relays
     public static final int COMPRESSOR_PORT = 3;
 //    ANALOG INPUTS
-    public static final int DRIVETRAIN_GYRO = 4;
+    public static final int DRIVETRAIN_GYRO = 1;
 //    public static final int PING_CHANNEL = 1;
 //    public static final int ECHO_CHANNEL = 2;
     public static final double ROBOT_MAX_SPEED = 7.0;

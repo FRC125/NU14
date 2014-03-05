@@ -62,30 +62,30 @@ public class OI {
     private final int DRIVE_RIGHT_AXIS = 2;
     
     private Button quickTurn = new JoystickButton(driverLeft, 1);
-    private Button deployIntake = new JoystickButton(operatorPad, 1);
-    private Button retractIntake = new JoystickButton(operatorPad, 3);
-    private Button runRollers = new JoystickButton(operatorPad, 6);
-    private Button reverseIntake = new JoystickButton(operatorPad, 4);
+    private Button deployIntake = new JoystickButton(operatorPad, 8); 
+    private Button retractIntake = new JoystickButton(operatorPad, 6);
+    private Button runRollers = new JoystickButton(operatorPad, 4); 
+    private Button reverseIntake = new JoystickButton(operatorPad, 3);
     private Button windCatapult = new JoystickButton(operatorPad, 7);
-    private Button fireCatapult = new JoystickButton(operatorPad, 8);
-    private Button openWings = new JoystickButton(operatorPad, 2);
-    private Button clamps = new JoystickButton(operatorPad, 5);
+    private Button fireCatapult = new JoystickButton(operatorPad, 5);
+    private Button openWings = new JoystickButton(operatorPad, 1);
+    private Button clamps = new JoystickButton(operatorPad, 2);
     private DriverStationEnhancedIO io = DriverStation.getInstance().getEnhancedIO();
     
 
     public OI()
     {
-        runRollers.whenPressed(new ActivateRollersCmd());
+        runRollers.whileHeld(new ActivateRollersCmd());
         runRollers.whenReleased(new StopRollersCmd());
         deployIntake.whenPressed(new DeployIntakeCmd());
         retractIntake.whenPressed(new StopIntakeCmd());
-        reverseIntake.whenPressed(new ReverseRollersCmd());
+        reverseIntake.whileHeld(new ReverseRollersCmd());
         reverseIntake.whenReleased(new StopRollersCmd());
         fireCatapult.whileHeld(new ShooterFireCmd());
-        windCatapult.whenPressed(new ShooterLoadCmd());
+        windCatapult.whileHeld(new ShooterLoadCmd());
         openWings.whenPressed(new CatchCmd());
         openWings.whenReleased(new CatcherRetractCmd());
-        clamps.whenPressed(new ClampsUpCmd());
+        clamps.whileHeld(new ClampsUpCmd());
         clamps.whenReleased(new ClampsDownCmd());
     }
      private double capAndBand(double value) {

@@ -6,6 +6,8 @@ package com.nutrons.aerialassist.commands.auto;
 
 import com.nutrons.aerialassist.commands.auto.AutoDriveDistanceCmd;
 import com.nutrons.aerialassist.commands.intake.AcquireBallCmd;
+import com.nutrons.aerialassist.commands.intake.DeployIntakeCmd;
+import com.nutrons.aerialassist.commands.intake.RetractIntakeCmd;
 import com.nutrons.aerialassist.commands.shooter.ShooterFireCmd;
 import com.nutrons.aerialassist.commands.shooter.ShooterLoadCmd;
 import com.nutrons.aerialassist.commands.shooter.ShooterWindCmd;
@@ -19,10 +21,10 @@ import edu.wpi.first.wpilibj.command.WaitCommand;
 public class AutoOneBall extends CommandGroup {
 
     public AutoOneBall() {
+        addSequential(new DeployIntakeCmd());
+        addSequential(new RetractIntakeCmd());
         addSequential(new ShooterFireCmd());
-        //addSequential(new ShooterLoadCmd());
-        addSequential(new AutoDriveTimeCmd(2.0));
-        addSequential(new WaitCommand(0.1));
-        addParallel(new ShooterWindCmd());
+        addSequential(new ShooterLoadCmd());
+        addParallel(new AutoDriveTimeCmd(0.75));
     }
 }
