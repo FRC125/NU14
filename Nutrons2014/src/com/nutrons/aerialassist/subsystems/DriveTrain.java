@@ -50,7 +50,7 @@ public class DriveTrain extends Subsystem {
     }
 
     public double getDistance() {
-        return 0.0;
+        return rightEncoder.getDistance();
     }
 
     public void driveLR(double lPower, double rPower) {

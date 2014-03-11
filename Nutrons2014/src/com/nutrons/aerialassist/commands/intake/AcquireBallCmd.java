@@ -16,5 +16,6 @@ public class AcquireBallCmd extends CommandGroup {
     public AcquireBallCmd() {
         addParallel(new ClampsUpCmd());
         addParallel(new DeployIntakeCmd());
+        addParallel(new ActivateRollersCmd());
     }
 }

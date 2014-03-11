@@ -16,7 +16,6 @@ import edu.wpi.first.wpilibj.command.WaitCommand;
 public class ShooterLoadCmd extends CommandGroup {
 
     public ShooterLoadCmd() {
-        addSequential(new DeployIntakeCmd());
         //addSequential(new WaitCommand(1.0));
         addSequential(new ShooterWindCmd());
     }

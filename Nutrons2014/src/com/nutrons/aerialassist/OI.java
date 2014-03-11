@@ -60,18 +60,18 @@ public class OI {
 
     private final int DRIVE_LEFT_AXIS = 2;
     private final int DRIVE_RIGHT_AXIS = 2;
-    
+
     private Button quickTurn = new JoystickButton(driverLeft, 1);
-    private Button deployIntake = new JoystickButton(operatorPad, 8); 
+    private Button deployIntake = new JoystickButton(operatorPad, 8);
     private Button retractIntake = new JoystickButton(operatorPad, 6);
-    private Button runRollers = new JoystickButton(operatorPad, 4); 
+    private Button runRollers = new JoystickButton(operatorPad, 4);
     private Button reverseIntake = new JoystickButton(operatorPad, 3);
     private Button windCatapult = new JoystickButton(operatorPad, 7);
     private Button fireCatapult = new JoystickButton(operatorPad, 5);
     private Button openWings = new JoystickButton(operatorPad, 1);
     private Button clamps = new JoystickButton(operatorPad, 2);
     private DriverStationEnhancedIO io = DriverStation.getInstance().getEnhancedIO();
-    
+
 
     public OI()
     {
@@ -85,8 +85,8 @@ public class OI {
         windCatapult.whileHeld(new ShooterLoadCmd());
         openWings.whenPressed(new CatchCmd());
         openWings.whenReleased(new CatcherRetractCmd());
-        clamps.whileHeld(new ClampsUpCmd());
-        clamps.whenReleased(new ClampsDownCmd());
+        clamps.whenPressed(new ClampsDownCmd());
+        clamps.whenReleased(new ClampsUpCmd());
     }
      private double capAndBand(double value) {
         value = Utils.deadband(value, .15, -1);

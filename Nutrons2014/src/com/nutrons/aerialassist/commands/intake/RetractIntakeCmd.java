@@ -11,7 +11,6 @@ import com.nutrons.aerialassist.commands.CommandBase;
  * @author NUTRONs
  */
 public class RetractIntakeCmd extends CommandBase {
-
     public RetractIntakeCmd() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -24,7 +23,6 @@ public class RetractIntakeCmd extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        intake.deployClamp();
         intake.retract();
     }
 
