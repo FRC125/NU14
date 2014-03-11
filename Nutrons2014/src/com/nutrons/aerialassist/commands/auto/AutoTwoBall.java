@@ -41,5 +41,6 @@ public class AutoTwoBall extends CommandGroup {
         addSequential(new ShooterFireCmd());
         addSequential(new ShooterLoadCmd());
         addParallel(new AutoDriveTimeCmd(0.75));
+        addParallel(new StopIntakeCmd());
     }
 }
