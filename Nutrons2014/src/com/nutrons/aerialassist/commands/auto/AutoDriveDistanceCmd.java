@@ -46,8 +46,4 @@ public class AutoDriveDistanceCmd extends CommandBase {
     protected void interrupted() {
         end();
     }
-
-
-
-
 }
