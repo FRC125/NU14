@@ -13,8 +13,7 @@ import com.nutrons.aerialassist.commands.CommandBase;
  * @author John
  */
 public class AutoDriveDistanceCmd extends CommandBase {
-    public final double ROBOT_SPEED = 12.0;
-    public final double Kp = 1.0;
+    public final double Kp = 2.0;
     private double targetDistance;
     private double initDistance;
     private double ref;
@@ -23,8 +22,10 @@ public class AutoDriveDistanceCmd extends CommandBase {
     public AutoDriveDistanceCmd(double distance) {
         requires(dt);
         initDistance = dt.getDistance();
-        targetDistance =  distance + initDistance; // before : initDistance - distance
+        targetDistance =  distance + initDistance;
         ref = distance;
+        dt.resetEncoders();
+        dt.startEncoders();
     }
 
     protected void initialize() {
@@ -32,7 +33,7 @@ public class AutoDriveDistanceCmd extends CommandBase {
 
     protected void execute() {
         double pow = (targetDistance - dt.getDistance())/ref*Kp;
-        dt.driveLR(-pow, pow); // before: left was positive and right was positive too
+        dt.driveLR(pow, pow); // before: left was positive and right was positive too
     }
 
     protected boolean isFinished() {

@@ -38,6 +38,9 @@ public class DriveTrain extends Subsystem {
 
         leftEncoder.start();
         rightEncoder.start();
+        
+        leftEncoder.setDistancePerPulse(4 * 3.14/360);
+        rightEncoder.setDistancePerPulse(4 * 3.14/360);
 
         leftPID.enable();
         rightPID.enable();
@@ -141,5 +144,15 @@ public class DriveTrain extends Subsystem {
 
     public PIDController getRightVPID() {
         return rightPID;
+    }
+    
+    public void startEncoders() {
+        leftEncoder.start();
+        rightEncoder.start();
+    }
+    
+    public void resetEncoders() {
+        leftEncoder.reset();
+        rightEncoder.reset();
     }
 }
