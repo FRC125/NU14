@@ -18,5 +18,6 @@ public class ShooterLoadCmd extends CommandGroup {
     public ShooterLoadCmd() {
         //addSequential(new WaitCommand(1.0));
         addSequential(new ShooterWindCmd());
+        addSequential(new ShooterExtendCandyCaneCmd());
     }
 }
