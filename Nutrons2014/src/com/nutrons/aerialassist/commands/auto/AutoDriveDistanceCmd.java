@@ -22,21 +22,21 @@ public class AutoDriveDistanceCmd extends CommandBase {
 
     public AutoDriveDistanceCmd(double distance) {
         requires(dt);
-        ref = distance;
         initDistance = dt.getDistance();
-        targetDistance = initDistance - distance;
+        targetDistance =  distance + initDistance; // before : initDistance - distance
+        ref = distance;
     }
 
     protected void initialize() {
     }
 
     protected void execute() {
-        double pow = (dt.getDistance() - targetDistance)/ref*Kp;
-        dt.driveLR(pow, pow);
+        double pow = (targetDistance - dt.getDistance())/ref*Kp;
+        dt.driveLR(-pow, pow); // before: left was positive and right was positive too
     }
 
     protected boolean isFinished() {
-        return Math.abs(dt.getDistance() - targetDistance) < epsilon;
+        return Math.abs(targetDistance - dt.getDistance()) < epsilon;
     }
 
     protected void end() {
