@@ -5,6 +5,7 @@ import com.nutrons.aerialassist.commands.GetDistanceCmd;
 import com.nutrons.aerialassist.commands.auto.AutoDriveDistanceCmd;
 import com.nutrons.aerialassist.commands.catcher.CatchCmd;
 import com.nutrons.aerialassist.commands.catcher.CatcherRetractCmd;
+import com.nutrons.aerialassist.commands.catcher.RetractCatcherCmd;
 import com.nutrons.aerialassist.commands.intake.*;
 import com.nutrons.aerialassist.commands.shooter.ShooterFireCmd;
 import com.nutrons.aerialassist.commands.shooter.ShooterLoadCmd;
@@ -80,18 +81,18 @@ public class OI {
 
     public OI()
     {
-        runRollers.whileHeld(new ActivateRollersCmd());
-        runRollers.whenReleased(new StopRollersCmd());
-        deployIntake.whenPressed(new DeployIntakeCmd());
+        runRollers.whileHeld(new RollerStartCmd());
+        runRollers.whenReleased(new RollerStopCmd());
+        deployIntake.whenPressed(new IntakeDeployCmd());
         retractIntake.whenPressed(new StopIntakeCmd());
-        reverseIntake.whileHeld(new ReverseRollersCmd());
-        reverseIntake.whenReleased(new StopRollersCmd());
+        reverseIntake.whileHeld(new RollerReverseCmd());
+        reverseIntake.whenReleased(new RollerStopCmd());
         fireCatapult.whileHeld(new ShooterFireCmd());
         windCatapult.whileHeld(new ShooterLoadCmd());
         openWings.whenPressed(new CatchCmd());
-        openWings.whenReleased(new CatcherRetractCmd());
-        clamps.whenPressed(new ClampsUpCmd());
-        clamps.whenReleased(new ClampsDownCmd());
+        openWings.whenReleased(new RetractCatcherCmd());
+        clamps.whenPressed(new RaiseClampsCmd());
+        clamps.whenReleased(new LowerClampsCmd());
 
         autoDrive.whenPressed(new AutoDriveDistanceCmd(100));
         getDist.whenPressed(new GetDistanceCmd());
@@ -154,4 +155,3 @@ public class OI {
         return capAndBand(operatorPad.getRawAxis(2));
     }
 }
-
