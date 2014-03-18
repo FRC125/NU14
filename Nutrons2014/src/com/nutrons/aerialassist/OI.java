@@ -1,18 +1,19 @@
 
 package com.nutrons.aerialassist;
 
+import com.nutrons.aerialassist.commands.GetDistanceCmd;
+import com.nutrons.aerialassist.commands.auto.AutoDriveDistanceCmd;
 import com.nutrons.aerialassist.commands.catcher.CatchCmd;
-import com.nutrons.aerialassist.commands.catcher.CatcherDeployCmd;
 import com.nutrons.aerialassist.commands.catcher.CatcherRetractCmd;
 import com.nutrons.aerialassist.commands.intake.*;
-import com.nutrons.aerialassist.commands.shooter.*;
+import com.nutrons.aerialassist.commands.shooter.ShooterFireCmd;
+import com.nutrons.aerialassist.commands.shooter.ShooterLoadCmd;
+import com.nutrons.lib.Utils;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStationEnhancedIO;
 import edu.wpi.first.wpilibj.DriverStationEnhancedIO.EnhancedIOException;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
-import edu.wpi.first.wpilibj.buttons.DigitalIOButton;
-import com.nutrons.lib.Utils;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
@@ -70,7 +71,10 @@ public class OI {
     private Button fireCatapult = new JoystickButton(operatorPad, 5);
     private Button openWings = new JoystickButton(operatorPad, 1);
     private Button clamps = new JoystickButton(operatorPad, 2);
-    private Button spitCatapult = new JoystickButton(operatorPad, 10);
+
+    // test buttons for auto drive dist
+    private Button autoDrive = new JoystickButton(operatorPad, 10);
+    private Button getDist = new JoystickButton(operatorPad, 9);
     private DriverStationEnhancedIO io = DriverStation.getInstance().getEnhancedIO();
 
 
@@ -86,9 +90,11 @@ public class OI {
         windCatapult.whileHeld(new ShooterLoadCmd());
         openWings.whenPressed(new CatchCmd());
         openWings.whenReleased(new CatcherRetractCmd());
-        clamps.whenPressed(new ClampsDownCmd());
-        clamps.whenReleased(new ClampsUpCmd());
-        spitCatapult.whileHeld(new ShooterSpitCmd());
+        clamps.whenPressed(new ClampsUpCmd());
+        clamps.whenReleased(new ClampsDownCmd());
+
+        autoDrive.whenPressed(new AutoDriveDistanceCmd(100));
+        getDist.whenPressed(new GetDistanceCmd());
     }
      private double capAndBand(double value) {
         value = Utils.deadband(value, .15, -1);

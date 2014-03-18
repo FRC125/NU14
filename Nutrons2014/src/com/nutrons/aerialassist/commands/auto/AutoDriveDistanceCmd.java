@@ -14,30 +14,34 @@ import com.nutrons.aerialassist.commands.CommandBase;
  */
 public class AutoDriveDistanceCmd extends CommandBase {
     public final double Kp = 2.0;
-    private double targetDistance;
-    private double initDistance;
+    private double targetRightDistance, targetLeftDistance;
+    private double initRightDistance, initLeftDistance;
     private double ref;
     private double epsilon = 0.1;
 
     public AutoDriveDistanceCmd(double distance) {
         requires(dt);
-        initDistance = dt.getDistance();
-        targetDistance =  distance + initDistance;
+        initRightDistance = dt.getRightDistance();
+        initLeftDistance= dt.getLeftDistance();
+        targetRightDistance =  distance + initRightDistance;
+        targetLeftDistance = distance + initLeftDistance;
         ref = distance;
         dt.resetEncoders();
         dt.startEncoders();
     }
 
     protected void initialize() {
+        System.out.println("Target Distance: " + targetRightDistance);
     }
 
     protected void execute() {
-        double pow = (targetDistance - dt.getDistance())/ref*Kp;
-        dt.driveLR(pow, pow); // before: left was positive and right was positive too
+        double lPow = (targetLeftDistance - dt.getLeftDistance())/ref*Kp;
+        double rPow = (targetRightDistance - dt.getRightDistance())/ref*Kp;
+        dt.driveLR(lPow, rPow); // before: left was positive and right was positive too
     }
 
     protected boolean isFinished() {
-        return Math.abs(targetDistance - dt.getDistance()) < epsilon;
+        return Math.abs(targetRightDistance - dt.getRightDistance()) < epsilon && Math.abs(targetLeftDistance - dt.getLeftDistance()) < epsilon;
     }
 
     protected void end() {

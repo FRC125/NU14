@@ -12,17 +12,17 @@ import com.nutrons.aerialassist.commands.CommandBase;
  *
  * @author John
  */
-public class ShooterRetractCandyCaneCmd extends CommandBase {
+public class ShooterExtendLockCmd extends CommandBase {
 
-    public ShooterRetractCandyCaneCmd() {
+    public ShooterExtendLockCmd() {
         requires(catapult);
     }
-    
+
     protected void initialize() {
     }
 
     protected void execute() {
-        catapult.retractCandyCane();
+        catapult.extendCandyCane();
     }
 
     protected boolean isFinished() {
@@ -30,11 +30,10 @@ public class ShooterRetractCandyCaneCmd extends CommandBase {
     }
 
     protected void end() {
-        
     }
 
     protected void interrupted() {
-        
     }
-    
+
+
 }

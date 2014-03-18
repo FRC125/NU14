@@ -38,7 +38,7 @@ public class DriveTrain extends Subsystem {
 
         leftEncoder.start();
         rightEncoder.start();
-        
+
         leftEncoder.setDistancePerPulse(4 * 3.14/360);
         rightEncoder.setDistancePerPulse(4 * 3.14/360);
 
@@ -52,8 +52,12 @@ public class DriveTrain extends Subsystem {
         setDefaultCommand(new DTManualTankCmd());
     }
 
-    public double getDistance() {
+    public double getRightDistance() {
         return rightEncoder.getDistance();
+    }
+
+    public double getLeftDistance() {
+        return leftEncoder.getDistance();
     }
 
     public void driveLR(double lPower, double rPower) {
@@ -145,12 +149,12 @@ public class DriveTrain extends Subsystem {
     public PIDController getRightVPID() {
         return rightPID;
     }
-    
+
     public void startEncoders() {
         leftEncoder.start();
         rightEncoder.start();
     }
-    
+
     public void resetEncoders() {
         leftEncoder.reset();
         rightEncoder.reset();

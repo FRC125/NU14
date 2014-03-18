@@ -7,8 +7,6 @@ package com.nutrons.aerialassist.commands.auto;
 import com.nutrons.aerialassist.commands.intake.*;
 import com.nutrons.aerialassist.commands.shooter.ShooterFireCmd;
 import com.nutrons.aerialassist.commands.shooter.ShooterLoadCmd;
-import com.nutrons.aerialassist.commands.shooter.ShooterWindCmd;
-import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.WaitCommand;
 

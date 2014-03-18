@@ -29,6 +29,5 @@ public class AutoThreeBall extends CommandGroup {
         addSequential(new AutoDriveTimeCmd(1, 0.75));
         addSequential(new ShooterFireCmd());
         addSequential(new StopIntakeCmd());
-
     }
 }
