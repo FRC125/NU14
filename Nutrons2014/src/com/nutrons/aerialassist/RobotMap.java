@@ -62,4 +62,5 @@ public class RobotMap {
     public static double DRIVE_F = 0.2;
     
     public static double SHOOTER_TIMEOUT = 5.0;
+    public static int ULTRASONIC  = 4;
 }
