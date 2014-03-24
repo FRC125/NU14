@@ -1,17 +1,21 @@
-
-package com.nutrons.aerialassist.commands.drivetrain;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.nutrons.aerialassist.commands.intake;
 
 import com.nutrons.aerialassist.commands.CommandBase;
-import com.nutrons.aerialassist.subsystems.Intake;
 
 /**
  *
- * @author camilo
+ * @author camilogonzalez
  */
-public class DTManualTankCmd extends CommandBase {
-
-    public DTManualTankCmd() {
-        requires(dt);
+public class ClampsUpCmd extends CommandBase {
+    
+    public ClampsUpCmd() {
+        // Use requires() here to declare subsystem dependencies
+        requires(intake);
     }
 
     // Called just before this Command runs the first time
@@ -20,13 +24,12 @@ public class DTManualTankCmd extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        dt.driveLR(oi.getDriveLeft()*0.8, oi.getDriveRight()*0.8);
-        //System.out.println("Left Encoder: " + dt.getLeftEncoder().get() + " Right Encoder: " + dt.getRightEncoder().get());
+        intake.retractClamp();
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true

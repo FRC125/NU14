@@ -1,17 +1,19 @@
-
-package com.nutrons.aerialassist.commands.drivetrain;
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.nutrons.aerialassist.commands.shooter;
 
 import com.nutrons.aerialassist.commands.CommandBase;
-import com.nutrons.aerialassist.subsystems.Intake;
 
 /**
  *
- * @author camilo
+ * @author NUTRONs
  */
-public class DTManualTankCmd extends CommandBase {
+public class ShooterSpitCmd extends CommandBase {
 
-    public DTManualTankCmd() {
-        requires(dt);
+    public ShooterSpitCmd() {
+        requires(catapult);
     }
 
     // Called just before this Command runs the first time
@@ -20,17 +22,19 @@ public class DTManualTankCmd extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        dt.driveLR(oi.getDriveLeft()*0.8, oi.getDriveRight()*0.8);
-        //System.out.println("Left Encoder: " + dt.getLeftEncoder().get() + " Right Encoder: " + dt.getRightEncoder().get());
+        if(!isFinished()) {
+            catapult.setSpeed(0.5);
+        }
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return catapult.isWound();
     }
 
     // Called once after isFinished returns true
     protected void end() {
+        catapult.setSpeed(0);
     }
 
     // Called when another command which requires one or more of the same

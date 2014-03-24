@@ -24,6 +24,7 @@ public class ReverseRollersCmd extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+        intake.retractClamp();
         intake.setMotorSpeed(-intake.FORWARDS);
     }
 

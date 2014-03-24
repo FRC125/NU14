@@ -9,19 +9,18 @@ package com.nutrons.aerialassist;
 
 
 import com.nutrons.aerialassist.commands.CommandBase;
+import com.nutrons.aerialassist.commands.auto.AutoDriveDistanceOnly;
 import com.nutrons.aerialassist.commands.auto.AutoOneBall;
+import com.nutrons.aerialassist.commands.auto.AutoThreeBall;
 import com.nutrons.aerialassist.commands.auto.AutoTwoBall;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Preferences;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import com.nutrons.aerialassist.commands.CommandBase;
-import com.nutrons.aerialassist.commands.auto.AutoThreeBall;
-import com.nutrons.aerialassist.commands.drivetrain.DTManualTankCmd;
-import edu.wpi.first.wpilibj.Preferences;
 
 
 /**
@@ -51,11 +50,8 @@ public class Nutrons2014 extends IterativeRobot {
         autoChooser.addDefault("One Ball Auto", (Command) new AutoOneBall());
         autoChooser.addObject("Two Ball Auto", (Command) new AutoTwoBall());
         autoChooser.addObject("Three Ball Auto", (Command) new AutoThreeBall());
+        autoChooser.addObject("Drive Forward Only",(Command) new AutoDriveDistanceOnly());
         SmartDashboard.putData("Autonomous Mode", autoChooser);
-        SmartDashboard.putData("Left Encoder", CommandBase.dt.getLeftEncoder());
-        SmartDashboard.putData("Right Encoder", CommandBase.dt.getRightEncoder());
-        SmartDashboard.putData("R Vel PID", CommandBase.dt.getRightVPID());
-        SmartDashboard.putData("L Vel PID", CommandBase.dt.getLeftVPID());
     }
 
     public void autonomousInit() {
@@ -85,7 +81,14 @@ public class Nutrons2014 extends IterativeRobot {
      * This function is called periodically during operator control
      */
     public void teleopPeriodic() {
+        SmartDashboard.putData("Left Encoder", CommandBase.dt.getLeftEncoder());
+        SmartDashboard.putData("Right Encoder", CommandBase.dt.getRightEncoder());
+        SmartDashboard.putData("R Vel PID", CommandBase.dt.getRightVPID());
+        SmartDashboard.putData("L Vel PID", CommandBase.dt.getLeftVPID());
         Scheduler.getInstance().run();
+        SmartDashboard.putBoolean("Hot Goal", CommandBase.catapult.isHot());
+        SmartDashboard.putNumber("Right Distance",CommandBase.dt.getRightDistance());
+        SmartDashboard.putNumber("Left Distance",CommandBase.dt.getLeftDistance());
     }
 
     /**
@@ -101,6 +104,7 @@ public class Nutrons2014 extends IterativeRobot {
 
     public void disabledPeriodic() {
         autonomousCommand = (Command) autoChooser.getSelected();
+//        System.out.println("Banner is: " + CommandBase.catapult.isHot());
     }
 
 }

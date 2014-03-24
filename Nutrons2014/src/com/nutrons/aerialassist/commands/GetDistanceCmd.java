@@ -1,16 +1,18 @@
-
-package com.nutrons.aerialassist.commands.drivetrain;
-
-import com.nutrons.aerialassist.commands.CommandBase;
-import com.nutrons.aerialassist.subsystems.Intake;
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.nutrons.aerialassist.commands;
 
 /**
  *
- * @author camilo
+ * @author NUTRONs
  */
-public class DTManualTankCmd extends CommandBase {
+public class GetDistanceCmd extends CommandBase {
 
-    public DTManualTankCmd() {
+    public GetDistanceCmd() {
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
         requires(dt);
     }
 
@@ -20,13 +22,12 @@ public class DTManualTankCmd extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        dt.driveLR(oi.getDriveLeft()*0.8, oi.getDriveRight()*0.8);
-        //System.out.println("Left Encoder: " + dt.getLeftEncoder().get() + " Right Encoder: " + dt.getRightEncoder().get());
+        System.out.println("Current LRDistance: " + dt.getLeftDistance() + " " + dt.getRightDistance());
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 
     // Called once after isFinished returns true

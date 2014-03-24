@@ -1,13 +1,12 @@
 package com.nutrons.aerialassist.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import com.nutrons.aerialassist.OI;
 import com.nutrons.aerialassist.subsystems.Catapult;
 import com.nutrons.aerialassist.subsystems.Catcher;
 import com.nutrons.aerialassist.subsystems.DriveTrain;
 import com.nutrons.aerialassist.subsystems.Intake;
-//import com.nutrons.aerialassist.subsystems.Vacuum;
+import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The base for all commands. All atomic commands should subclass CommandBase.
@@ -19,7 +18,7 @@ public abstract class CommandBase extends Command {
 
     public static OI oi;
     // Create a single static instance of all of your subsystems
-    public static DriveTrain dt;
+    public static DriveTrain dt = new DriveTrain();
     public static Intake intake = new Intake();
     public static Catapult catapult = new Catapult();
     public static Catcher catcher = new Catcher();
@@ -31,7 +30,7 @@ public abstract class CommandBase extends Command {
         // yet. Thus, their requires() statements may grab null pointers. Bad
         // news. Don't move it.
         oi = new OI();
-        dt = new DriveTrain();
+//        dt = new DriveTrain();
 
         // Show what command your subsystem is running on the SmartDashboard
         SmartDashboard.putData(dt);

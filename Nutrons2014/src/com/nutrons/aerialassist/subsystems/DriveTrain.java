@@ -21,6 +21,7 @@ public class DriveTrain extends Subsystem {
 
     // robot parts
     Gyro gyro = new Gyro(RobotMap.DRIVETRAIN_GYRO);
+    AnalogModule ultrasonic = new AnalogChannel(RobotMap.ULTRASONIC).getModule();
 
     MultiMotor lMotor = new MultiMotor(new int[]{RobotMap.DRIVE_LEFT_1, RobotMap.DRIVE_LEFT_2, RobotMap.DRIVE_LEFT_3});
     MultiMotor rMotor = new MultiMotor(new int[]{RobotMap.DRIVE_RIGHT_1, RobotMap.DRIVE_RIGHT_2, RobotMap.DRIVE_RIGHT_3});
@@ -39,6 +40,9 @@ public class DriveTrain extends Subsystem {
         leftEncoder.start();
         rightEncoder.start();
 
+        leftEncoder.setDistancePerPulse(4 * 3.14/360);
+        rightEncoder.setDistancePerPulse(4 * 3.14/360);
+
         leftPID.enable();
         rightPID.enable();
         //gyro.reset();
@@ -49,16 +53,19 @@ public class DriveTrain extends Subsystem {
         setDefaultCommand(new DTManualTankCmd());
     }
 
-    public double getDistance() {
-        return 0.0;
+    public double getRightDistance() {
+        return rightEncoder.get();
+    }
+
+    public double getLeftDistance() {
+        return leftEncoder.get();
     }
 
     public void driveLR(double lPower, double rPower) {
-        getLeftVPID().setSetpoint(RobotMap.ROBOT_MAX_SPEED * lPower);
+       getLeftVPID().setSetpoint(RobotMap.ROBOT_MAX_SPEED * lPower);
         getRightVPID().setSetpoint(RobotMap.ROBOT_MAX_SPEED * rPower);
-        //System.out.println("R: " + rightEncoder.getRate() + " L: " + leftEncoder.getRate());
-        SmartDashboard.putNumber("RIGHT", rightPID.get());
-        SmartDashboard.putNumber("LEFT", leftPID.get());
+        //System.out.println("R: " + rightEncoder.getRate()+ " L: " + leftEncoder.getRate());
+
 //        lMotor.set(lPower);
 //        rMotor.set(rPower);
 
@@ -141,5 +148,18 @@ public class DriveTrain extends Subsystem {
 
     public PIDController getRightVPID() {
         return rightPID;
+    }
+
+    public void startEncoders() {
+        leftEncoder.start();
+        rightEncoder.start();
+    }
+
+    public void resetEncoders() {
+        leftEncoder.reset();
+        rightEncoder.reset();
+    }
+     public double convertToInches() {
+        return (double)(ultrasonic.getAverageVoltage(4)*1000.0/9.4);
     }
 }
