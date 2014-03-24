@@ -4,7 +4,6 @@ package com.nutrons.aerialassist;
 import com.nutrons.aerialassist.commands.GetDistanceCmd;
 import com.nutrons.aerialassist.commands.auto.AutoDriveDistanceCmd;
 import com.nutrons.aerialassist.commands.catcher.CatchCmd;
-import com.nutrons.aerialassist.commands.catcher.CatcherRetractCmd;
 import com.nutrons.aerialassist.commands.catcher.RetractCatcherCmd;
 import com.nutrons.aerialassist.commands.intake.*;
 import com.nutrons.aerialassist.commands.shooter.ShooterFireCmd;
@@ -84,7 +83,7 @@ public class OI {
         runRollers.whileHeld(new RollerStartCmd());
         runRollers.whenReleased(new RollerStopCmd());
         deployIntake.whenPressed(new IntakeDeployCmd());
-        retractIntake.whenPressed(new StopIntakeCmd());
+        retractIntake.whenPressed(new RetractIntakesCmd());
         reverseIntake.whileHeld(new RollerReverseCmd());
         reverseIntake.whenReleased(new RollerStopCmd());
         fireCatapult.whileHeld(new ShooterFireCmd());
@@ -94,7 +93,7 @@ public class OI {
         clamps.whenPressed(new RaiseClampsCmd());
         clamps.whenReleased(new LowerClampsCmd());
 
-        autoDrive.whenPressed(new AutoDriveDistanceCmd(100));
+        //autoDrive.whenPressed(new AutoDriveDistanceCmd(100));
         getDist.whenPressed(new GetDistanceCmd());
     }
      private double capAndBand(double value) {

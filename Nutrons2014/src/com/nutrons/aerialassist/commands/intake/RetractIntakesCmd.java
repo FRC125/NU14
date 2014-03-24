@@ -15,7 +15,10 @@ public class RetractIntakesCmd extends CommandGroup {
 
     public RetractIntakesCmd() {
         addSequential(new RetractIntakeCmd());
-        addSequential(new WaitCommand(0.75));
+        addSequential(new WaitCommand(0.1));
+        addSequential(new ActivateRollersCmd());
+        addSequential(new WaitCommand(0.7));
         addSequential(new ClampsDownCmd());
+        addSequential(new StopRollersCmd());
     }
 }

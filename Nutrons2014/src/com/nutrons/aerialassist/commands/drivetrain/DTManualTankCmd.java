@@ -20,7 +20,7 @@ public class DTManualTankCmd extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        dt.driveLR(oi.getDriveLeft(), oi.getDriveRight());
+        dt.driveLR(oi.getDriveLeft()*0.8, oi.getDriveRight()*0.8);
         //System.out.println("Left Encoder: " + dt.getLeftEncoder().get() + " Right Encoder: " + dt.getRightEncoder().get());
     }
 

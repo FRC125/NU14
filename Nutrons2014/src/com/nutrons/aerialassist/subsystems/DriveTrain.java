@@ -54,17 +54,17 @@ public class DriveTrain extends Subsystem {
     }
 
     public double getRightDistance() {
-        return rightEncoder.getDistance();
+        return rightEncoder.get();
     }
 
     public double getLeftDistance() {
-        return leftEncoder.getDistance();
+        return leftEncoder.get();
     }
 
     public void driveLR(double lPower, double rPower) {
        getLeftVPID().setSetpoint(RobotMap.ROBOT_MAX_SPEED * lPower);
         getRightVPID().setSetpoint(RobotMap.ROBOT_MAX_SPEED * rPower);
-        System.out.println("R: " + rightEncoder.getRate()+ " L: " + leftEncoder.getRate());
+        //System.out.println("R: " + rightEncoder.getRate()+ " L: " + leftEncoder.getRate());
 
 //        lMotor.set(lPower);
 //        rMotor.set(rPower);

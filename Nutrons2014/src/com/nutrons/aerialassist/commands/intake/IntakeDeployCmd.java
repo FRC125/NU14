@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.command.WaitCommand;
  * @author Nutrons
  */
 public class IntakeDeployCmd extends CommandGroup {
-    
+
     public IntakeDeployCmd() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
@@ -31,10 +31,8 @@ public class IntakeDeployCmd extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
         addSequential(new DeployIntakeCmd());
-        addSequential(new RollerStartCmd());
         addSequential(new WaitCommand(.5));
-        addSequential(new ClampsDownCmd());
-        addSequential(new StopRollersCmd());
-        
+        addSequential(new ClampsUpCmd());
+
     }
 }

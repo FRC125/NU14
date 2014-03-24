@@ -19,7 +19,7 @@ public class ShooterFireCmd extends CommandGroup {
         //addSequential(new DeployIntakeCmd());
         //addSequential(new WaitCommand(1.0));
         addSequential(new ShooterRetractLockCmd());
-        addSequential(new WaitCommand(0.5));
+        //addSequential(new WaitCommand(0.5));
         addSequential(new ClampsUpCmd());
         addSequential(new ShooterUnwindCmd());
         addSequential(new WaitCommand(0.75));

@@ -4,9 +4,7 @@
  */
 package com.nutrons.aerialassist.commands.auto;
 
-import com.nutrons.aerialassist.commands.intake.ClampsDownCmd;
-import com.nutrons.aerialassist.commands.intake.DeployIntakeCmd;
-import com.nutrons.aerialassist.commands.intake.RetractIntakeCmd;
+import com.nutrons.aerialassist.commands.intake.*;
 import com.nutrons.aerialassist.commands.shooter.ShooterFireCmd;
 import com.nutrons.aerialassist.commands.shooter.ShooterLoadCmd;
 import com.nutrons.aerialassist.subsystems.Catapult;
@@ -24,10 +22,10 @@ public class AutoOneBall extends CommandGroup {
         boolean hot = Catapult.isHot();
         addSequential(new DeployIntakeCmd());
         addSequential(new WaitCommand(0.5));
-        addSequential(new RetractIntakeCmd());
-        addSequential(new ClampsDownCmd());
+        addSequential(new RetractIntakesCmd());
         addSequential(new WaitCommand(0.5));
-        addSequential(new AutoDriveTimeCmd(1.75)); // must change this to AutoDriveDistance()
+        addSequential(new AutoDriveTimeCmd(1.65)); // must change this to AutoDriveDistance()
+        addSequential(new WaitCommand(1));
         if(hot) {
             addSequential(new ShooterFireCmd());
             addSequential(new WaitCommand(.5));

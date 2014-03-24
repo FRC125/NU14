@@ -14,10 +14,16 @@ import edu.wpi.first.wpilibj.command.Command;
 public class ActivateRollersCmd extends CommandBase {
 
     Command pullBall = new StopIntakeCmd();
+    double speed = intake.FORWARDS;
 
     public ActivateRollersCmd() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+        requires(intake);
+    }
+
+    public ActivateRollersCmd(double speed) {
+        this.speed = speed;
         requires(intake);
     }
 
@@ -28,7 +34,7 @@ public class ActivateRollersCmd extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         intake.retractClamp();
-        intake.setMotorSpeed(intake.FORWARDS);
+        intake.setMotorSpeed(speed);
     }
 
     // Make this return true when this Command no longer needs to run execute()
