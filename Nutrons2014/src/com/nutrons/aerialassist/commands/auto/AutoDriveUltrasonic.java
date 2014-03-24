@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.nutrons.aerialassist.commands.intake;
+package com.nutrons.aerialassist.commands.auto;
 
 import com.nutrons.aerialassist.commands.CommandBase;
 
@@ -10,36 +10,47 @@ import com.nutrons.aerialassist.commands.CommandBase;
  *
  * @author NUTRONs
  */
-public class ReverseIntakeCmd extends CommandBase {
+public class AutoDriveUltrasonic extends CommandBase {
 
-    public ReverseIntakeCmd() {
+
+
+    double targetDist, ref, dist;
+    final double Kp = 1.0;
+    final double epsilon = 2.0;
+
+    public AutoDriveUltrasonic(double dist) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
-        requires(intake);
+        requires(dt);
+        this.dist = dist;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+        targetDist = Math.floor(dt.convertToInches()) - dist;
+        ref = dist;
+        System.out.println("target dist: " + targetDist + " dist: " + 10 + " actual dist: " + dt.convertToInches());
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-        intake.setMotorSpeed(-1.0);
+        double pow = (dt.convertToInches() - targetDist)/ref * Kp;
+        dt.driveLR(pow,pow);
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        return Math.abs(dt.convertToInches() - targetDist) < epsilon;
     }
 
     // Called once after isFinished returns true
     protected void end() {
-        intake.setMotorSpeed(0);
+        dt.driveLR(0,0);
     }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-        this.end();
+        end();
     }
 }

@@ -5,3 +5,4 @@
 *.war
 *.ear
 /Nutrons2014/build/
+.DS_Store

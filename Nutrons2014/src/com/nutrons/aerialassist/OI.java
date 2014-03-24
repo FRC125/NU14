@@ -1,16 +1,19 @@
 
 package com.nutrons.aerialassist;
 
-import com.nutrons.aerialassist.commands.intake.AcquireBallCmd;
-import com.nutrons.aerialassist.commands.intake.ReverseIntakeCmd;
-import com.nutrons.aerialassist.commands.intake.StopIntakeCmd;
+import com.nutrons.aerialassist.commands.GetDistanceCmd;
+import com.nutrons.aerialassist.commands.auto.AutoDriveDistanceCmd;
+import com.nutrons.aerialassist.commands.catcher.CatchCmd;
+import com.nutrons.aerialassist.commands.catcher.RetractCatcherCmd;
+import com.nutrons.aerialassist.commands.intake.*;
+import com.nutrons.aerialassist.commands.shooter.ShooterFireCmd;
+import com.nutrons.aerialassist.commands.shooter.ShooterLoadCmd;
+import com.nutrons.lib.Utils;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStationEnhancedIO;
 import edu.wpi.first.wpilibj.DriverStationEnhancedIO.EnhancedIOException;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
-import edu.wpi.first.wpilibj.buttons.DigitalIOButton;
-import com.nutrons.lib.Utils;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 /**
@@ -51,24 +54,47 @@ public class OI {
     // button.w5henReleased(new ExampleCommand());
 
     //Joysticks
-    private final Joystick driverPad = new Joystick(RobotMap.PAD_DRIVER);
-
+    private final Joystick operatorPad = new Joystick(RobotMap.PAD_OP);
+    private final Joystick driverLeft = new Joystick(RobotMap.DRIVE_LEFT_JOY);
+    private final Joystick driverRight = new Joystick(RobotMap.DRIVE_RIGHT_JOY);
     // TODO: Adjust values
 
     private final int DRIVE_LEFT_AXIS = 2;
-    private final int DRIVE_RIGHT_AXIS = 4;
+    private final int DRIVE_RIGHT_AXIS = 2;
 
-    private Button quickTurn = new JoystickButton(driverPad, 5);
-    private Button acquireBall = new JoystickButton(driverPad, 6);
-    private Button reverseIntake = new JoystickButton(driverPad, 4);
+    private Button quickTurn = new JoystickButton(driverLeft, 1);
+    private Button deployIntake = new JoystickButton(operatorPad, 8);
+    private Button retractIntake = new JoystickButton(operatorPad, 6);
+    private Button runRollers = new JoystickButton(operatorPad, 4);
+    private Button reverseIntake = new JoystickButton(operatorPad, 3);
+    private Button windCatapult = new JoystickButton(operatorPad, 7);
+    private Button fireCatapult = new JoystickButton(operatorPad, 5);
+    private Button openWings = new JoystickButton(operatorPad, 1);
+    private Button clamps = new JoystickButton(operatorPad, 2);
+
+    // test buttons for auto drive dist
+    private Button autoDrive = new JoystickButton(operatorPad, 10);
+    private Button getDist = new JoystickButton(operatorPad, 9);
     private DriverStationEnhancedIO io = DriverStation.getInstance().getEnhancedIO();
+
 
     public OI()
     {
-        acquireBall.whenPressed(new AcquireBallCmd());
-        acquireBall.whenReleased(new StopIntakeCmd());
-        reverseIntake.whenPressed(new ReverseIntakeCmd());
-        reverseIntake.whenReleased(new StopIntakeCmd());
+        runRollers.whileHeld(new RollerStartCmd());
+        runRollers.whenReleased(new RollerStopCmd());
+        deployIntake.whenPressed(new IntakeDeployCmd());
+        retractIntake.whenPressed(new RetractIntakesCmd());
+        reverseIntake.whileHeld(new RollerReverseCmd());
+        reverseIntake.whenReleased(new RollerStopCmd());
+        fireCatapult.whileHeld(new ShooterFireCmd());
+        windCatapult.whileHeld(new ShooterLoadCmd());
+        openWings.whenPressed(new CatchCmd());
+        openWings.whenReleased(new RetractCatcherCmd());
+        clamps.whenPressed(new RaiseClampsCmd());
+        clamps.whenReleased(new LowerClampsCmd());
+
+        //autoDrive.whenPressed(new AutoDriveDistanceCmd(100));
+        getDist.whenPressed(new GetDistanceCmd());
     }
      private double capAndBand(double value) {
         value = Utils.deadband(value, .15, -1);
@@ -105,24 +131,26 @@ public class OI {
     }
 
     public double getDriveRight() {
-        return capAndBand(driverPad.getRawAxis(DRIVE_RIGHT_AXIS));
+        return driverRight.getRawAxis(DRIVE_RIGHT_AXIS);
     }
 
     public double getDriveLeft() {
-        return -capAndBand(driverPad.getRawAxis(DRIVE_LEFT_AXIS));
+        return -driverLeft.getRawAxis(DRIVE_LEFT_AXIS);
     }
 
     public double getDriveThrottle() {
-        return capAndBand(driverPad.getRawAxis(2));
+        return driverLeft.getRawAxis(DRIVE_LEFT_AXIS);
     }
 
     public double getDriveWheel() {
-        return capAndBand(driverPad.getRawAxis(3));
+        return driverRight.getRawAxis(1);
     }
 
     public boolean getDriveQuickTurn() throws EnhancedIOException {
         return quickTurn.get();
     }
-
+    public double getWinchSpeed()
+    {
+        return capAndBand(operatorPad.getRawAxis(2));
+    }
 }
-
