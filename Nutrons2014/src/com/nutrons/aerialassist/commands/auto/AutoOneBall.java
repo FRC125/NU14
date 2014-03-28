@@ -24,7 +24,7 @@ public class AutoOneBall extends CommandGroup {
         addSequential(new WaitCommand(0.5));
         addSequential(new RetractIntakesCmd());
         addSequential(new WaitCommand(0.5));
-        addSequential(new AutoDriveTimeCmd(1.65)); // must change this to AutoDriveDistance()
+        addSequential(new AutoDriveTimeCmd(1.85)); // must change this to AutoDriveDistance()
         addSequential(new WaitCommand(1));
         if(hot) {
             addSequential(new ShooterFireCmd());

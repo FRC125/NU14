@@ -55,10 +55,10 @@ public class RobotMap {
     public static final int DRIVETRAIN_GYRO = 1;
 //    public static final int PING_CHANNEL = 1;
 //    public static final int ECHO_CHANNEL = 2;
-    public static final double ROBOT_MAX_SPEED = 7.0;
+    public static final double ROBOT_MAX_SPEED = 11.5;
     public static double DRIVE_KP = 0.0;
     public static double DRIVE_KI = 0.0;
-    public static double DRIVE_KD =  0.09;
+    public static double DRIVE_KD =  0.00;
     public static double DRIVE_F = 0.2;
 
     public static double SHOOTER_TIMEOUT = 5.0;

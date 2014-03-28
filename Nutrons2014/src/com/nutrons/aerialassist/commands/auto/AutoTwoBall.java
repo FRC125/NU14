@@ -25,19 +25,20 @@ public class AutoTwoBall extends CommandGroup {
        addSequential(new ActivateRollersCmd()); // tune this
        addSequential(new ClampsDownCmd());
        addSequential(new WaitCommand(0.5));
-       addSequential(new AutoDriveTimeCmd(1.65));
-       
+       addSequential(new AutoDriveTimeCmd(1.85));
+
        addSequential(new RollerStopCmd());
+       addSequential(new WaitCommand(1));
        addSequential(new ShooterFireCmd());
        addSequential(new WaitCommand(0.5));
        addSequential(new ShooterLoadCmd());
        addSequential(new DeployIntakeCmd());
        addSequential(new ActivateRollersCmd());
-       addSequential(new WaitCommand(2));
+       addSequential(new WaitCommand(1.6));
        addSequential(new RollerStopCmd());
-       addSequential(new RetractIntakeCmd());
+       addSequential(new RetractIntakesCmd());
        addSequential(new ClampsDownCmd());
-       addSequential(new WaitCommand(0.5));
+       addSequential(new WaitCommand(.75));
        addSequential(new ShooterFireCmd());
        addSequential(new WaitCommand(0.5));
        addSequential(new ShooterLoadCmd());

@@ -17,7 +17,7 @@ public class AutoDriveDistanceCmd extends CommandBase {
     private double targetRightDistance, targetLeftDistance;
     private double initRightDistance, initLeftDistance;
     private double ref;
-    private double epsilon = 0.1;
+    private double epsilon = 1.0;
 
     public AutoDriveDistanceCmd(double distance) {
         requires(dt);

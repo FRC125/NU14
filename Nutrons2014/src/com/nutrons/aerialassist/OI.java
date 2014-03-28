@@ -88,10 +88,8 @@ public class OI {
         reverseIntake.whenReleased(new RollerStopCmd());
         fireCatapult.whileHeld(new ShooterFireCmd());
         windCatapult.whileHeld(new ShooterLoadCmd());
-        openWings.whenPressed(new CatchCmd());
-        openWings.whenReleased(new RetractCatcherCmd());
+        openWings.whenPressed(new LowerClampsCmd());
         clamps.whenPressed(new RaiseClampsCmd());
-        clamps.whenReleased(new LowerClampsCmd());
 
         //autoDrive.whenPressed(new AutoDriveDistanceCmd(100));
         getDist.whenPressed(new GetDistanceCmd());

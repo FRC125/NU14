@@ -63,11 +63,11 @@ public class DriveTrain extends Subsystem {
 
     public void driveLR(double lPower, double rPower) {
        getLeftVPID().setSetpoint(RobotMap.ROBOT_MAX_SPEED * lPower);
-        getRightVPID().setSetpoint(RobotMap.ROBOT_MAX_SPEED * rPower);
+       getRightVPID().setSetpoint(RobotMap.ROBOT_MAX_SPEED * rPower);
         //System.out.println("R: " + rightEncoder.getRate()+ " L: " + leftEncoder.getRate());
 
-//        lMotor.set(lPower);
-//        rMotor.set(rPower);
+       //lMotor.set(lPower);
+       //rMotor.set(rPower);
 
     }
 
@@ -162,4 +162,12 @@ public class DriveTrain extends Subsystem {
      public double convertToInches() {
         return (double)(ultrasonic.getAverageVoltage(4)*1000.0/9.4);
     }
+
+     public double getLeftRate() {
+         return leftEncoder.getRate();
+     }
+
+     public double getRightRate() {
+         return rightEncoder.getRate();
+     }
 }

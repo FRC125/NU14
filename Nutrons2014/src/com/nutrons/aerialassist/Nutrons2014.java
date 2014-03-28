@@ -85,10 +85,13 @@ public class Nutrons2014 extends IterativeRobot {
         SmartDashboard.putData("Right Encoder", CommandBase.dt.getRightEncoder());
         SmartDashboard.putData("R Vel PID", CommandBase.dt.getRightVPID());
         SmartDashboard.putData("L Vel PID", CommandBase.dt.getLeftVPID());
+        SmartDashboard.putNumber("L Joystick", CommandBase.oi.getDriveLeft());
         Scheduler.getInstance().run();
         SmartDashboard.putBoolean("Hot Goal", CommandBase.catapult.isHot());
         SmartDashboard.putNumber("Right Distance",CommandBase.dt.getRightDistance());
         SmartDashboard.putNumber("Left Distance",CommandBase.dt.getLeftDistance());
+        SmartDashboard.putNumber("Left rate", CommandBase.dt.getLeftRate());
+        SmartDashboard.putNumber("Right rate", CommandBase.dt.getRightRate());
     }
 
     /**
