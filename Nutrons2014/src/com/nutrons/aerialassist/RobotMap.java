@@ -49,6 +49,7 @@ public class RobotMap {
     public static final int WING = 5;
     public static final int CLAMPS = 4;
     public static final int CANDY_CANE = 6;
+    public static final int GATE_LATCHES = 9;
 //    Relays
     public static final int COMPRESSOR_PORT = 3;
 //    ANALOG INPUTS

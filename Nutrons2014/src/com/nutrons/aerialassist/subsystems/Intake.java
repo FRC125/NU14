@@ -21,6 +21,7 @@ public class Intake extends Subsystem {
     private DigitalInput sensor = new DigitalInput(RobotMap.INTAKE_BUMPER);
     public DigitalInput deployedSensor = new DigitalInput(RobotMap.INTAKE_DEPLOYED);
     private Solenoid clamps = new Solenoid(RobotMap.CLAMPS);
+    private Solenoid gateLatches = new Solenoid(RobotMap.GATE_LATCHES);
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
@@ -43,12 +44,20 @@ public class Intake extends Subsystem {
         System.out.println("Intake Deployed: " + deployedSensor.get());
         return !deployedSensor.get();
     }
-    
+
     public void deployClamp() {
         clamps.set(true);
     }
-    
+
     public void retractClamp() {
         clamps.set(false);
+    }
+
+    public void fireGateLatches() {
+        gateLatches.set(true);
+    }
+
+    public void releaseGateLatches() {
+        gateLatches.set(false);
     }
 }
