@@ -18,7 +18,7 @@ import edu.wpi.first.wpilibj.command.WaitCommand;
 public class AutoTwoBall extends CommandGroup {
 
     public AutoTwoBall() {
-       addSequential(new WaitCommand(0.3));
+       //addSequential(new WaitCommand(0.3));
        boolean hot = Catapult.isHot();
        addSequential(new DeployIntakeCmd());
        addSequential(new WaitCommand(0.5));
@@ -28,9 +28,9 @@ public class AutoTwoBall extends CommandGroup {
        addSequential(new AutoDriveTimeCmd(1.85));
 
        addSequential(new RollerStopCmd());
-       addSequential(new WaitCommand(1));
+       addSequential(new WaitCommand(.75));
        addSequential(new ShooterFireCmd());
-       addSequential(new WaitCommand(0.5));
+       addSequential(new WaitCommand(0.3));
        addSequential(new ShooterLoadCmd());
        addSequential(new DeployIntakeCmd());
        addSequential(new ActivateRollersCmd());
