@@ -26,7 +26,7 @@ public class AutoTwoBall extends CommandGroup {
        addSequential(new ClampsDownCmd());
        addSequential(new WaitCommand(0.5));
        addSequential(new AutoDriveTimeCmd(1.85));
-
+       addSequential(new WaitCommand(0.5)); // this value may have to change it's the delay after we stop driving
        addSequential(new RollerStopCmd());
        addSequential(new WaitCommand(.75));
        addSequential(new ShooterFireCmd());
