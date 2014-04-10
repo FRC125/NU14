@@ -5,6 +5,7 @@
 package com.nutrons.aerialassist.commands.intake;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.command.WaitCommand;
 
 /**
  *
@@ -13,8 +14,10 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class SpitIntakeCmd extends CommandGroup {
 
     public SpitIntakeCmd() {
-        addSequential(new FireGateLatchesCmd());
         addSequential(new DeployIntakeCmd());
+        addSequential(new FireGateLatchesCmd());
+        addSequential(new WaitCommand(0.5));
+        addSequential(new RetractIntakeCmd());
         addSequential(new ReverseRollersCmd());
     }
 }

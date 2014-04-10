@@ -84,8 +84,8 @@ public class OI {
         runRollers.whenReleased(new RollerStopCmd());
         deployIntake.whenPressed(new IntakeDeployCmd());
         retractIntake.whenPressed(new RetractIntakesCmd());
-        reverseIntake.whileHeld(new RollerReverseCmd());
-        reverseIntake.whenReleased(new RollerStopCmd());
+        reverseIntake.whileHeld(new SpitIntakeCmd());
+        reverseIntake.whenReleased(new StopSpitCmd());
         fireCatapult.whileHeld(new ShooterFireCmd());
         windCatapult.whileHeld(new ShooterLoadCmd());
         openWings.whenPressed(new LowerClampsCmd());

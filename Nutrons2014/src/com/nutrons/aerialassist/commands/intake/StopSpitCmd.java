@@ -14,7 +14,6 @@ public class StopSpitCmd extends CommandGroup {
 
     public StopSpitCmd() {
         addSequential(new StopRollersCmd());
-        addSequential(new RetractIntakeCmd());
         addSequential(new RetractGateLatchesCmd());
     }
 
