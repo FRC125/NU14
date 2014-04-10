@@ -21,14 +21,16 @@ public class AutoTwoBall extends CommandGroup {
        //addSequential(new WaitCommand(0.3));
        boolean hot = Catapult.isHot();
        addSequential(new DeployIntakeCmd());
-       addSequential(new WaitCommand(0.5));
+       addSequential(new WaitCommand(0.4));
        addSequential(new ActivateRollersCmd()); // tune this
        addSequential(new ClampsDownCmd());
-       addSequential(new WaitCommand(0.5));
+       addSequential(new WaitCommand(0.4));
        addSequential(new AutoDriveTimeCmd(1.85));
-       addSequential(new WaitCommand(0.5)); // this value may have to change it's the delay after we stop driving
        addSequential(new RollerStopCmd());
-       addSequential(new WaitCommand(.75));
+       addSequential(new ClampsUpCmd());
+       addSequential(new WaitCommand(0.7));
+       addSequential(new ClampsDownCmd());
+       addSequential(new WaitCommand(0.5)); // this value may have to change it's the delay after we stop driving
        addSequential(new ShooterFireCmd());
        addSequential(new WaitCommand(0.3));
        addSequential(new ShooterLoadCmd());
@@ -38,7 +40,7 @@ public class AutoTwoBall extends CommandGroup {
        addSequential(new RollerStopCmd());
        addSequential(new RetractIntakesCmd());
        addSequential(new ClampsDownCmd());
-       addSequential(new WaitCommand(.75));
+       addSequential(new WaitCommand(.6));
        addSequential(new ShooterFireCmd());
        addSequential(new WaitCommand(0.5));
        addSequential(new ShooterLoadCmd());
