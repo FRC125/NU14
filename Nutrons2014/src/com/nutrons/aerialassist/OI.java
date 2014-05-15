@@ -66,15 +66,16 @@ public class OI {
     private Button deployIntake = new JoystickButton(operatorPad, 8);
     private Button retractIntake = new JoystickButton(operatorPad, 6);
     private Button runRollers = new JoystickButton(operatorPad, 4);
-    private Button reverseIntake = new JoystickButton(operatorPad, 3);
+    private Button reverseIntake = new JoystickButton(operatorPad, 10);
     private Button windCatapult = new JoystickButton(operatorPad, 7);
     private Button fireCatapult = new JoystickButton(operatorPad, 5);
     private Button openWings = new JoystickButton(operatorPad, 1);
     private Button clamps = new JoystickButton(operatorPad, 2);
+    private Button fireGateLatch = new JoystickButton(operatorPad, 9);
+    private Button spitIntake = new JoystickButton(operatorPad, 3);
 
     // test buttons for auto drive dist
-    private Button autoDrive = new JoystickButton(operatorPad, 10);
-    private Button getDist = new JoystickButton(operatorPad, 9);
+    private Button getDist = new JoystickButton(operatorPad, 20);
     private DriverStationEnhancedIO io = DriverStation.getInstance().getEnhancedIO();
 
 
@@ -84,13 +85,16 @@ public class OI {
         runRollers.whenReleased(new RollerStopCmd());
         deployIntake.whenPressed(new IntakeDeployCmd());
         retractIntake.whenPressed(new RetractIntakesCmd());
-        reverseIntake.whileHeld(new SpitIntakeCmd());
-        reverseIntake.whenReleased(new StopSpitCmd());
+        reverseIntake.whileHeld(new RollerReverseCmd());
+        reverseIntake.whenReleased(new RollerStopCmd());
         fireCatapult.whileHeld(new ShooterFireCmd());
         windCatapult.whileHeld(new ShooterLoadCmd());
         openWings.whenPressed(new LowerClampsCmd());
         clamps.whenPressed(new RaiseClampsCmd());
-
+        fireGateLatch.whileHeld(new FireGateLatchesCmd());
+        fireGateLatch.whenReleased(new RetractGateLatchesCmd());
+        spitIntake.whileHeld(new SpitIntakeCmd());
+        spitIntake.whenReleased(new StopSpitCmd());
         //autoDrive.whenPressed(new AutoDriveDistanceCmd(100));
         getDist.whenPressed(new GetDistanceCmd());
     }
