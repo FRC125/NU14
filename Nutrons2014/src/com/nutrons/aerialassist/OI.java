@@ -2,12 +2,13 @@
 package com.nutrons.aerialassist;
 
 import com.nutrons.aerialassist.commands.GetDistanceCmd;
+import com.nutrons.aerialassist.commands.TestToggleCmd;
 import com.nutrons.aerialassist.commands.auto.AutoDriveDistanceCmd;
 import com.nutrons.aerialassist.commands.catcher.CatchCmd;
 import com.nutrons.aerialassist.commands.catcher.RetractCatcherCmd;
 import com.nutrons.aerialassist.commands.intake.*;
-import com.nutrons.aerialassist.commands.shooter.ShooterFireCmd;
-import com.nutrons.aerialassist.commands.shooter.ShooterLoadCmd;
+import com.nutrons.aerialassist.commands.shooter.*;
+import com.nutrons.lib.ToggleButton;
 import com.nutrons.lib.Utils;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStationEnhancedIO;
@@ -71,8 +72,10 @@ public class OI {
     private Button fireCatapult = new JoystickButton(operatorPad, 5);
     private Button openWings = new JoystickButton(operatorPad, 1);
     private Button clamps = new JoystickButton(operatorPad, 2);
-    private Button fireGateLatch = new JoystickButton(operatorPad, 9);
+    private Button longShot = new JoystickButton(operatorPad, 12);
+    private Button shortShot = new JoystickButton(operatorPad, 11);
     private Button spitIntake = new JoystickButton(operatorPad, 3);
+    private Button toggle = new ToggleButton(operatorPad, 9);
 
     // test buttons for auto drive dist
     private Button getDist = new JoystickButton(operatorPad, 20);
@@ -81,6 +84,7 @@ public class OI {
 
     public OI()
     {
+        toggle.whenPressed(new TestToggleCmd());
         runRollers.whileHeld(new RollerStartCmd());
         runRollers.whenReleased(new RollerStopCmd());
         deployIntake.whenPressed(new IntakeDeployCmd());
@@ -91,12 +95,13 @@ public class OI {
         windCatapult.whileHeld(new ShooterLoadCmd());
         openWings.whenPressed(new LowerClampsCmd());
         clamps.whenPressed(new RaiseClampsCmd());
-        fireGateLatch.whileHeld(new FireGateLatchesCmd());
-        fireGateLatch.whenReleased(new RetractGateLatchesCmd());
+        longShot.whenPressed(new ShooterLongShotCmd());
+        shortShot.whenPressed(new ShooterShortShotCmd());
         spitIntake.whileHeld(new SpitIntakeCmd());
         spitIntake.whenReleased(new StopSpitCmd());
         //autoDrive.whenPressed(new AutoDriveDistanceCmd(100));
         getDist.whenPressed(new GetDistanceCmd());
+
     }
      private double capAndBand(double value) {
         value = Utils.deadband(value, .15, -1);

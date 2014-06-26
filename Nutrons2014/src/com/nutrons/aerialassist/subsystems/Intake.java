@@ -42,7 +42,7 @@ public class Intake extends Subsystem {
 
     public boolean isDeployed() {
         System.out.println("Intake Deployed: " + deployedSensor.get());
-        return !deployedSensor.get();
+        return deployedSensor.get(); // was reversed before
     }
 
     public void deployClamp() {

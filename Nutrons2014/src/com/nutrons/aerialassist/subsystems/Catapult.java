@@ -21,9 +21,10 @@ public class Catapult extends Subsystem {
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
+    private Solenoid hardStopLock = new Solenoid(RobotMap.HARD_STOP_LOCK);
+    private Solenoid hardStop = new Solenoid(RobotMap.HARD_STOP);
     private SpeedController motor1 = new Talon(RobotMap.WINCH);
     private SpeedController motor2 = new Talon(RobotMap.WINCH2);
-    private Solenoid candyCane = new Solenoid(RobotMap.CANDY_CANE);
     private DigitalInput isWound = new DigitalInput(RobotMap.WINCH_SENSOR);
     private DigitalInput isFired = new DigitalInput(RobotMap.FIRED_SENSOR);
     private static DigitalInput isHot = new DigitalInput(RobotMap.BANNERED_SENSOR);
@@ -32,7 +33,7 @@ public class Catapult extends Subsystem {
     private DebouncedBoolean fired = new DebouncedBoolean(1);
     double scaling[] = {0.0, 0.0, 0.0, 0.0, 0.1, 0.1, 0.1, 0.2, 0.2, 0.2, 0.4, 0.4, 1};
     private final boolean EXTENDED = true;
-    
+
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         setDefaultCommand(new ShooterStopCmd());
@@ -70,12 +71,20 @@ public class Catapult extends Subsystem {
 
         return pow;
     }
-    
-    public void extendCandyCane() {
-        candyCane.set(EXTENDED);
+
+    public void deployHardStop() {
+        hardStop.set(true);
     }
-    
-    public void retractCandyCane() {
-        candyCane.set(!EXTENDED);
+
+    public void retractHardStop() {
+        hardStop.set(false);
+    }
+
+    public void lockHardStop() {
+        hardStopLock.set(false);
+    }
+
+    public void unlockHardStop() {
+        hardStopLock.set(true);
     }
 }
