@@ -81,10 +81,10 @@ public class Catapult extends Subsystem {
     }
 
     public void lockHardStop() {
-        hardStopLock.set(false);
+        hardStopLock.set(true);
     }
 
     public void unlockHardStop() {
-        hardStopLock.set(true);
+        hardStopLock.set(false);
     }
 }

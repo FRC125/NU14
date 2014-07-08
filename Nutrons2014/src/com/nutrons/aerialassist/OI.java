@@ -3,9 +3,6 @@ package com.nutrons.aerialassist;
 
 import com.nutrons.aerialassist.commands.GetDistanceCmd;
 import com.nutrons.aerialassist.commands.TestToggleCmd;
-import com.nutrons.aerialassist.commands.auto.AutoDriveDistanceCmd;
-import com.nutrons.aerialassist.commands.catcher.CatchCmd;
-import com.nutrons.aerialassist.commands.catcher.RetractCatcherCmd;
 import com.nutrons.aerialassist.commands.intake.*;
 import com.nutrons.aerialassist.commands.shooter.*;
 import com.nutrons.lib.ToggleButton;
@@ -70,7 +67,7 @@ public class OI {
     private Button reverseIntake = new JoystickButton(operatorPad, 10);
     private Button windCatapult = new JoystickButton(operatorPad, 7);
     private Button fireCatapult = new JoystickButton(operatorPad, 5);
-    private Button openWings = new JoystickButton(operatorPad, 1);
+    private Button openClamps = new JoystickButton(operatorPad, 1);
     private Button clamps = new JoystickButton(operatorPad, 2);
     private Button longShot = new JoystickButton(operatorPad, 12);
     private Button shortShot = new JoystickButton(operatorPad, 11);
@@ -93,10 +90,12 @@ public class OI {
         reverseIntake.whenReleased(new RollerStopCmd());
         fireCatapult.whileHeld(new ShooterFireCmd());
         windCatapult.whileHeld(new ShooterLoadCmd());
-        openWings.whenPressed(new LowerClampsCmd());
+        openClamps.whenPressed(new LowerClampsCmd());
         clamps.whenPressed(new RaiseClampsCmd());
         longShot.whenPressed(new ShooterLongShotCmd());
+        longShot.whenReleased(new HardStopLockCmd());
         shortShot.whenPressed(new ShooterShortShotCmd());
+        shortShot.whenReleased(new HardStopLockCmd());
         spitIntake.whileHeld(new SpitIntakeCmd());
         spitIntake.whenReleased(new StopSpitCmd());
         //autoDrive.whenPressed(new AutoDriveDistanceCmd(100));

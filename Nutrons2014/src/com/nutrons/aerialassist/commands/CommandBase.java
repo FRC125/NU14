@@ -2,7 +2,6 @@ package com.nutrons.aerialassist.commands;
 
 import com.nutrons.aerialassist.OI;
 import com.nutrons.aerialassist.subsystems.Catapult;
-import com.nutrons.aerialassist.subsystems.Catcher;
 import com.nutrons.aerialassist.subsystems.DriveTrain;
 import com.nutrons.aerialassist.subsystems.Intake;
 import edu.wpi.first.wpilibj.command.Command;
@@ -21,7 +20,6 @@ public abstract class CommandBase extends Command {
     public static DriveTrain dt = new DriveTrain();
     public static Intake intake = new Intake();
     public static Catapult catapult = new Catapult();
-    public static Catcher catcher = new Catcher();
 
     public static void init() {
         // This MUST be here. If the OI creates Commands (which it very likely
