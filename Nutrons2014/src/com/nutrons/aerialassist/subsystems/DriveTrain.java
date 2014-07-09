@@ -4,10 +4,8 @@ import com.nutrons.aerialassist.RobotMap;
 import com.nutrons.aerialassist.commands.drivetrain.DTManualTankCmd;
 import com.nutrons.lib.MultiMotor;
 import com.sun.squawk.util.MathUtils;
-import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.*;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
  * @author Camilo

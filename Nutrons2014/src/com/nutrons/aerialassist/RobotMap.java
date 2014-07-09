@@ -47,9 +47,9 @@ public class RobotMap {
     public static final int INTAKE_PISTON = 7;
     public static final int INTAKE_UP_PISTON = 8;
     public static final int CLAMPS = 4;
-    public static final int GATE_LATCHES = 5;
+    public static final int GATE_LATCHES = 2;
     public static final int HARD_STOP_LOCK = 6;
-    public static final int HARD_STOP = 2;
+    public static final int HARD_STOP = 5;
 //    Relays
     public static final int COMPRESSOR_PORT = 3;
 //    ANALOG INPUTS

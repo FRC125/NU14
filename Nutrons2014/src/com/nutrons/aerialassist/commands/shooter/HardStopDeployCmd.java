@@ -5,6 +5,7 @@
 package com.nutrons.aerialassist.commands.shooter;
 
 import com.nutrons.aerialassist.commands.CommandBase;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -24,6 +25,7 @@ public class HardStopDeployCmd extends CommandBase {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
         catapult.deployHardStop();
+        SmartDashboard.putBoolean("Long Shot", catapult.getShotPosition());
     }
 
     // Make this return true when this Command no longer needs to run execute()

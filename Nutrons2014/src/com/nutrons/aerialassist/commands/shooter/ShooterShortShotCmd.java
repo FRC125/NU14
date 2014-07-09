@@ -15,9 +15,9 @@ public class ShooterShortShotCmd extends CommandGroup {
 
     public ShooterShortShotCmd() {
         addSequential(new HardStopUnlockCmd());
-        addSequential(new WaitCommand(1));
+        addSequential(new WaitCommand(.75));
         addSequential(new HardStopRetractCmd());
-        addSequential(new WaitCommand(1));
+        addSequential(new WaitCommand(.75));
         addSequential(new HardStopLockCmd());
     }
 }

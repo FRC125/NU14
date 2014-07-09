@@ -69,8 +69,8 @@ public class OI {
     private Button fireCatapult = new JoystickButton(operatorPad, 5);
     private Button openClamps = new JoystickButton(operatorPad, 1);
     private Button clamps = new JoystickButton(operatorPad, 2);
-    private Button longShot = new JoystickButton(operatorPad, 12);
-    private Button shortShot = new JoystickButton(operatorPad, 11);
+    private Button shortShot = new JoystickButton(operatorPad, 12);
+    private Button longShot = new JoystickButton(operatorPad, 11);
     private Button spitIntake = new JoystickButton(operatorPad, 3);
     private Button toggle = new ToggleButton(operatorPad, 9);
 
@@ -92,10 +92,10 @@ public class OI {
         windCatapult.whileHeld(new ShooterLoadCmd());
         openClamps.whenPressed(new LowerClampsCmd());
         clamps.whenPressed(new RaiseClampsCmd());
-        longShot.whenPressed(new ShooterLongShotCmd());
-        longShot.whenReleased(new HardStopLockCmd());
-        shortShot.whenPressed(new ShooterShortShotCmd());
+        shortShot.whenPressed(new ShooterLongShotCmd());
         shortShot.whenReleased(new HardStopLockCmd());
+        longShot.whenPressed(new ShooterShortShotCmd());
+        longShot.whenReleased(new HardStopLockCmd());
         spitIntake.whileHeld(new SpitIntakeCmd());
         spitIntake.whenReleased(new StopSpitCmd());
         //autoDrive.whenPressed(new AutoDriveDistanceCmd(100));

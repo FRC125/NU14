@@ -33,6 +33,7 @@ public class Catapult extends Subsystem {
     private DebouncedBoolean fired = new DebouncedBoolean(1);
     double scaling[] = {0.0, 0.0, 0.0, 0.0, 0.1, 0.1, 0.1, 0.2, 0.2, 0.2, 0.4, 0.4, 1};
     private final boolean EXTENDED = true;
+    private boolean longShotPosition = false;
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
@@ -73,10 +74,12 @@ public class Catapult extends Subsystem {
     }
 
     public void deployHardStop() {
+        longShotPosition = false;
         hardStop.set(true);
     }
 
     public void retractHardStop() {
+        longShotPosition = true;
         hardStop.set(false);
     }
 
@@ -86,5 +89,9 @@ public class Catapult extends Subsystem {
 
     public void unlockHardStop() {
         hardStopLock.set(false);
+    }
+
+    public boolean getShotPosition() {
+        return longShotPosition;
     }
 }

@@ -6,6 +6,7 @@ package com.nutrons.aerialassist.commands.shooter;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.WaitCommand;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
@@ -15,10 +16,9 @@ public class ShooterLongShotCmd extends CommandGroup {
 
     public ShooterLongShotCmd() {
         addSequential(new HardStopUnlockCmd());
-        addSequential(new WaitCommand(1));
+        addSequential(new WaitCommand(.75));
         addSequential(new HardStopDeployCmd());
-        addSequential(new WaitCommand(1));
+        addSequential(new WaitCommand(.75));
         addSequential(new HardStopLockCmd());
-        addSequential(new WaitCommand(1));
     }
 }
